@@ -1,0 +1,24 @@
+# Stage 02 — chunk. Install alongside the root requirements.txt
+# (python-dotenv, jupyter, nbformat, nbstripout, pre-commit).
+
+# 01-character-splitting.ipynb
+langchain-text-splitters>=0.3   # RecursiveCharacterTextSplitter (import: langchain_text_splitters)
+
+# 02-token-aware-chunking.ipynb
+docling>=2.100                  # DocumentConverter, HybridChunker
+docling-core>=2.80               # DoclingDocument, TableItem (import: docling_core)
+
+# 03-store-backends.ipynb
+chromadb>=1.0                    # local, file-based vector store — no server, no account
+pysqlite3-binary>=0.5             # only needed on a system with sqlite3 < 3.35 (chromadb's floor);
+                                   # see the sqlite3-patch cell in 03-store-backends.ipynb
+pinecone>=8.0                     # optional — only imported once PINECONE_API_KEY is set;
+                                   # the notebook runs fully without it (pinecone backend stops
+                                   # at a clear error instead)
+
+# Not required to run any notebook here, listed for completeness:
+# - S3 Vectors: no public client library is wired in (see 03-store-backends.ipynb's
+#   get_s3vectors_stub — the donor's S3 Vectors client is product-specific and not carried over).
+# - sentence-transformers / a real embedding model: deciding the embedding model is stage 03's
+#   job. Every embed_fn in this stage's notebooks is either a pluggable stub or the deterministic,
+#   NOT-semantically-meaningful hash_embed() written locally in each notebook.

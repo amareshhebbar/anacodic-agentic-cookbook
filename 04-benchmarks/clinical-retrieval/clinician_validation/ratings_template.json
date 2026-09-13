@@ -1,0 +1,21 @@
+{
+  "rater_1": [
+    {
+      "query_id": "B01",
+      "accuracy": 4,
+      "grounding": 4,
+      "utility": 4,
+      "safety": "Safe"
+    }
+  ],
+  "rater_2": [
+    {
+      "query_id": "B01",
+      "accuracy": 4,
+      "grounding": 5,
+      "utility": 3,
+      "safety": "Safe"
+    }
+  ],
+  "_instructions": "Copy to ratings.json. One entry per benchmark query (B01..M04) per rater. Run: python analyze_ratings.py ratings.json"
+}

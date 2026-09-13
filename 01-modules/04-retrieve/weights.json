@@ -1,0 +1,8 @@
+{
+  "_comment": "Neutral, illustrative default weights for final_score in 05-ranking-and-final-score.ipynb. These are NOT copied from any real clinical department's corpus.yaml or any course config -- they are the same neutral defaults used as a fallback when no domain-specific weights are configured. Swap them for your own; they must sum to 1.0.",
+  "relevance": 0.45,
+  "citations": 0.20,
+  "recency": 0.15,
+  "journal_impact": 0.10,
+  "evidence_level": 0.10
+}

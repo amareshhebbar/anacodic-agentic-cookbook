@@ -1,0 +1,12 @@
+# 03-embed — install the root requirements.txt too (jupyter, nbformat,
+# nbstripout, python-dotenv already come from there).
+openai>=1.0
+numpy>=1.26
+chromadb>=1.0             # 05-local-vector-store.ipynb — local, file-based, no server/account
+pysqlite3-binary>=0.5     # only needed on a system with sqlite3 < 3.35 (chromadb's floor);
+                          # 05-local-vector-store.ipynb's sqlite3 patch is a no-op otherwise
+
+# Optional — 04-provider-dispatch.ipynb's EMBEDDING_PROVIDER=local path only.
+# Not required to run any notebook in this stage: without it, that one path
+# raises a clear EmbeddingError instead of an import traceback.
+# sentence-transformers>=3.0

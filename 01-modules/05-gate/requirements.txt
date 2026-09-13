@@ -1,0 +1,10 @@
+# 01-modules/05-gate — stage-specific dependencies.
+# Install alongside the root requirements.txt:
+#   pip install -r requirements.txt -r 01-modules/05-gate/requirements.txt
+
+# The deterministic grounding check (fabricated quotes, orphan citations,
+# the bibliographic guard, abstention) uses only stdlib -- re, difflib,
+# json -- and needs nothing below to run.
+
+groq>=1.0    # 01-grounding-check.ipynb — optional LLM judge layer, if GROQ_API_KEY is set
+openai>=1.0  # 01-grounding-check.ipynb — alternative provider if OPENAI_API_KEY is set instead

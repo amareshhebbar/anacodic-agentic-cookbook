@@ -1,0 +1,24 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-added-large-files
+        args: ["--maxkb=5120"]  # 5 MB gate — see prds/sep11_cookbook_secrets_and_exclusions.md
+      - id: detect-private-key
+      - id: check-merge-conflict
+
+  - repo: local
+    hooks:
+      - id: no-dotenv
+        name: refuse a committed .env (only .env.example may be tracked)
+        entry: bash -c 'git diff --cached --name-only | grep -E "(^|/)\.env$" && exit 1 || exit 0'
+        language: system
+        pass_filenames: false
+
+  - repo: https://github.com/kynan/nbstripout
+    rev: 0.7.1
+    hooks:
+      - id: nbstripout
+        # strips outputs before commit — a notebook cell can print a key,
+        # a patient identifier, or a student name even when no source line
+        # names it. Keep this hook first-class, not optional.

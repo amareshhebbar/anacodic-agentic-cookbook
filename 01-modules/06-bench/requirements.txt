@@ -1,0 +1,10 @@
+# Stage 05 — bench. Install root requirements.txt first (jupyter, nbformat,
+# python-dotenv), then this file.
+
+deepeval>=1.0          # Faithfulness / Answer Relevancy / Contextual Precision / Contextual Recall
+openai>=1.0            # deepeval's default judge client, and the SDK that talks to Groq safely
+pytest>=8.0             # for contributors porting the pass/fail-gate pattern from terrier-ta
+python-dotenv>=1.0
+numpy>=1.26            # 06-judge-integrity-and-agreement.ipynb — compute_icc()/analyze_ratings(),
+                       # also needed to run 04-benchmarks/clinical-retrieval/clinician_validation/
+                       # analyze_ratings.py standalone

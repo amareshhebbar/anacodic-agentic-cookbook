@@ -1,0 +1,36 @@
+# Secrets — never .env, only .env.example
+.env
+.env.*
+!.env.example
+
+# Data that must never travel — see prds/sep11_cookbook_secrets_and_exclusions.md
+*.db
+*.sqlite
+*.sqlite3
+*.mlmodel
+runs/
+.cache/
+data/uploads/
+data/raw/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+*.egg-info/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Frontend / build
+node_modules/
+dist/
+build/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+prds/
