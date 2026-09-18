@@ -3,7 +3,7 @@ repos:
     rev: v4.6.0
     hooks:
       - id: check-added-large-files
-        args: ["--maxkb=5120"]  # 5 MB gate — see prds/sep11_cookbook_secrets_and_exclusions.md
+        args: ["--maxkb=5120"]  # 5 MB gate — no asset in this repo needs to be larger
       - id: detect-private-key
       - id: check-merge-conflict
 

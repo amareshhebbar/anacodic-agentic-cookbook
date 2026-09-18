@@ -1,3 +1,6 @@
+# Copyright 2026 Anacodic AI Labs — https://anacodicai.org
+# SPDX-License-Identifier: Apache-2.0
+
 """Resolves the DeepEval "judge" LLM used to grade benchmark answers
 (Faithfulness / AnswerRelevancy / ContextualPrecision / ContextualRecall).
 
@@ -17,7 +20,7 @@ Override the model name for whichever provider wins with DEEPEVAL_JUDGE_MODEL.
 
 CAUTION carried over from the copy plan: the donor's own default Groq model,
 `llama-3.3-70b-versatile`, was retired by Groq on 2026-08-16 — same date as
-the vision model retired in `01-modules/01-extract/04-handwriting-ocr.ipynb`.
+the vision model retired in `01-modules/01-tools/01-extract/04-handwriting-ocr.ipynb`.
 The MECHANISM (provider selection, the adapter classes) is what's copied;
 the retired default is not. `GroqJudgeModel` below requires
 `DEEPEVAL_JUDGE_MODEL` to be set explicitly rather than silently guessing

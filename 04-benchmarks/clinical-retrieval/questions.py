@@ -1,3 +1,6 @@
+# Copyright 2026 Anacodic AI Labs — https://anacodicai.org
+# SPDX-License-Identifier: Apache-2.0
+
 """The 20 clinical-retrieval benchmark questions, B01-M04.
 
 These are clinical *topics* to retrieve papers about — not patient data — so

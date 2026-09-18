@@ -1,0 +1,24 @@
+# 01-modules/03-guardrails — stage-specific dependencies.
+# Install alongside the root requirements.txt:
+#   pip install -r requirements.txt -r 01-modules/03-guardrails/requirements.txt
+
+# Every guard in this stage is stdlib only — re, json, contextvars, dataclasses,
+# enum, typing. That is not an accident of the port: a guardrail runs on every
+# request, ahead of everything else, so anything it imports is a dependency of
+# the whole system's first line of defence. All three notebooks run end to end
+# with nothing below installed.
+
+groq>=1.0    # 01-input-guard.ipynb, Step 10 only — one optional real metered call,
+             # if GROQ_API_KEY is set. Without it the step prints that it is
+             # skipping and uses the deterministic stand-in.
+openai>=1.0  # 01-input-guard.ipynb, Step 10 only — alternative provider if
+             # OPENAI_API_KEY is set instead.
+
+# Not required, and deliberately absent:
+# - No guardrail framework. No Bedrock Guardrails, no Guardrails AI, no policy
+#   DSL. The point of this stage is that a reader can see the regex and the
+#   isinstance check themselves; a dependency here would hide exactly what the
+#   notebooks are trying to show.
+# - No model is called at all in 02-tool-guard.ipynb or 03-fail-closed.ipynb.
+#   A guardrail that needs a model call to decide whether to permit a model call
+#   has a bootstrapping problem, and a bill.

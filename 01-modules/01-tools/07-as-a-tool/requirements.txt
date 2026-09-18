@@ -1,0 +1,15 @@
+# 01-modules/01-tools/07-as-a-tool — stage-specific dependencies.
+# Install alongside the root requirements.txt:
+#   pip install -r requirements.txt -r 01-modules/01-tools/07-as-a-tool/requirements.txt
+
+# Nothing in this stage needs a third-party package to run. The tool specs, the
+# registry, the retrieval stand-in, the router, and the failure taxonomy use
+# only the standard library -- inspect, typing, json, re, hashlib, math,
+# datetime -- which is the whole point of a stage about what a framework does
+# for you.
+
+# Optional. Each notebook's last cell sends its real tool specs to a live model
+# if one of these keys is loaded; with no key it prints that it is skipping and
+# the deterministic stand-in's result stands.
+groq>=1.0    # used when GROQ_API_KEY is set
+openai>=1.0  # used when OPENAI_API_KEY is set instead

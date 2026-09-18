@@ -1,12 +1,16 @@
+# Copyright 2026 Anacodic AI Labs — https://anacodicai.org
+# SPDX-License-Identifier: Apache-2.0
+
 """Shared notebook plumbing for every stage in this repo.
 
-One file, used the same way from 01-extract through 06-bench. It does four
-jobs and nothing else:
+One file, used the same way by every stage — 01-tools through 05-observe. It
+does four jobs and nothing else:
 
 1. **Bootstrap** — put the repo root on ``sys.path`` and load ``.env``, so a
-   notebook two levels down (``01-modules/<stage>/*.ipynb``) can ``import nbio``
-   and reach whatever module it needs, regardless of the working directory it
-   was launched from.
+   notebook nested below the root (``01-modules/<stage>/*.ipynb``, or
+   ``01-modules/01-tools/<sub-stage>/*.ipynb`` one level deeper again) can
+   ``import nbio`` and reach whatever module it needs, regardless of the
+   working directory it was launched from.
 2. **Real runs** — a notebook reads the same ``runs/<run_id>/`` artifacts a
    pipeline actually wrote, rather than a value restated inline. A number in a
    notebook cell can then never drift from the number the code produced.
@@ -25,9 +29,11 @@ Usage in a notebook — this exact walk-up must be the first code cell, before
 directory set to the notebook's own folder (confirmed both for interactive
 Jupyter and for headless ``nbconvert``), not the repo root, and not the
 directory the server was launched from. A bare ``import nbio`` therefore
-fails from any notebook under ``01-modules/<stage>/`` unless the repo root is
+fails from any notebook under ``01-modules/`` unless the repo root is
 already on ``sys.path`` — which ``bootstrap()`` itself cannot arrange, since
-it can't run until after the import that needs it has already succeeded::
+it can't run until after the import that needs it has already succeeded. The
+walk-up searches six levels, which covers the deepest notebooks in the repo
+(``01-modules/01-tools/<sub-stage>/``, three below the root) with room spare::
 
     import sys
     from pathlib import Path
@@ -43,7 +49,10 @@ it can't run until after the import that needs it has already succeeded::
         sys.path.insert(0, str(_root))
 
     import nbio
-    nbio.bootstrap()
+    repo_root = nbio.bootstrap()      # assign it: a bare call leaves the
+                                      # absolute path as the cell's value, and
+                                      # Jupyter renders that into the saved
+                                      # output, where it does not belong
     run = nbio.load_run()             # most recent run, or nbio.load_run("<id>")
     nbio.show_json(run["manifest"])
 
@@ -65,9 +74,10 @@ from typing import Any, Iterable
 # ---------------------------------------------------------------- path bootstrap
 
 def _find_repo_root() -> Path:
-    """Walk up from CWD until this file is found, so a notebook two levels
-    down (01-modules/<stage>/) resolves the same repo root regardless of where
-    Jupyter was launched from."""
+    """Walk up from CWD until this file is found, so a notebook nested below
+    the root (01-modules/<stage>/, or 01-modules/01-tools/<sub-stage>/ one
+    level deeper) resolves the same repo root regardless of where Jupyter was
+    launched from."""
     root = Path(os.getcwd()).resolve()
     for _ in range(6):
         if (root / "nbio.py").is_file():
@@ -272,6 +282,16 @@ PRICES: dict[str, tuple[float, float]] = {
 }
 
 
+def _usd(amount: float) -> str:
+    """Two decimals normally, four for sub-cent amounts.
+
+    A ceiling set below a cent is a real and useful thing to do — it is how a
+    notebook proves the budget fires without spending anything. Printing it as
+    "$0.00" would make that message read as though no ceiling had been set.
+    """
+    return f"${amount:.2f}" if abs(amount) >= 0.01 else f"${amount:.4f}"
+
+
 class BudgetExceeded(RuntimeError):
     """Raised when a call has carried spend past the ceiling. The run should stop."""
 
@@ -323,13 +343,18 @@ class Meter:
         that crosses the ceiling, not before it — set the budget a little
         under any hard external limit if that distinction matters.
         """
+        # Normalize once, before anything keys off it: a provider that returns
+        # a blank model id must land in the per-model breakdown under the same
+        # key the unpriced set uses, or report() shows an uncounted call as
+        # though it had been priced at $0.00.
+        model_id = model_id or "(unknown)"
         rate = price_for(model_id)
         if rate is None:
-            self._unpriced.add(model_id or "(unknown)")
+            self._unpriced.add(model_id)
             if self.budget_usd is not None:
                 raise UnpricedModel(
                     f"{model_id!r} has no entry in nbio.PRICES, so its spend "
-                    f"cannot be counted against the ${self.budget_usd:.2f} "
+                    f"cannot be counted against the {_usd(self.budget_usd)} "
                     f"ceiling. Add a rate to nbio.PRICES before using this model "
                     f"under a budget."
                 )
@@ -344,7 +369,7 @@ class Meter:
 
         if self.budget_usd is not None and self.cost_usd >= self.budget_usd:
             raise BudgetExceeded(
-                f"stopped at ${self.cost_usd:.4f} of a ${self.budget_usd:.2f} "
+                f"stopped at ${self.cost_usd:.4f} of a {_usd(self.budget_usd)} "
                 f"ceiling after {self.calls} call(s). Raise the ceiling only if "
                 f"the spend so far looks right."
             )
@@ -361,7 +386,7 @@ class Meter:
 
         if self.budget_usd is not None and self.cost_usd >= self.budget_usd:
             raise BudgetExceeded(
-                f"stopped at ${self.cost_usd:.4f} of a ${self.budget_usd:.2f} "
+                f"stopped at ${self.cost_usd:.4f} of a {_usd(self.budget_usd)} "
                 f"ceiling after {self.calls} call(s). Raise the ceiling only if "
                 f"the spend so far looks right."
             )
@@ -383,7 +408,7 @@ class Meter:
             f"{self.completion_tokens:,} out tokens)"
         )
         if self.budget_usd is not None:
-            lines.append(f"{'ceiling':<44}{'$' + format(self.budget_usd, '.2f'):>10}")
+            lines.append(f"{'ceiling':<44}{_usd(self.budget_usd):>10}")
         return "\n".join(lines)
 
 

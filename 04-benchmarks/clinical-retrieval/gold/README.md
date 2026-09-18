@@ -23,7 +23,7 @@ didn't use it). A reviewer asking which one happened gets a guess.
 Scored against **both** arms — retrieved context and gold context — the
 answer is in the table: if the answer looks bad against retrieved context but
 good against gold context, retrieval is the problem; if it looks bad against
-both, generation is the problem. See `01-modules/06-bench/03-gold-context-arm.ipynb`
+both, generation is the problem. See `01-modules/01-tools/06-bench/03-gold-context-arm.ipynb`
 for the comparison pattern (demonstrated there on a synthetic example, since
 there's no real gold data yet).
 
@@ -76,5 +76,5 @@ source — not a model, and not "TBD".
    that can't be automated.
 
 Until this folder has entries, `eval.py` and
-`01-modules/06-bench/03-gold-context-arm.ipynb` report the gold-context arm as
+`01-modules/01-tools/06-bench/03-gold-context-arm.ipynb` report the gold-context arm as
 skipped rather than guessing.

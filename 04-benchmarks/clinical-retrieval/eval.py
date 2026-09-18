@@ -1,3 +1,6 @@
+# Copyright 2026 Anacodic AI Labs — https://anacodicai.org
+# SPDX-License-Identifier: Apache-2.0
+
 #!/usr/bin/env python
 """One-command harness for the clinical-retrieval benchmark.
 

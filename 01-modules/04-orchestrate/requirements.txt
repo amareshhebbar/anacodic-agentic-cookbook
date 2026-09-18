@@ -1,0 +1,10 @@
+# 01-modules/04-orchestrate — stage-specific dependencies.
+# Install alongside the root requirements.txt:
+#   pip install -r requirements.txt -r 01-modules/04-orchestrate/requirements.txt
+
+# Every notebook in this stage runs end to end on the standard library alone --
+# hashlib, math, re, difflib, time -- plus nbio from the repo root. Nothing below
+# is needed for the offline path, which is all four notebooks in full.
+
+groq>=1.0     # 01-should-i-retrieve.ipynb — optional model-driven router layer, if GROQ_API_KEY is set
+openai>=1.0   # 01-should-i-retrieve.ipynb — alternative provider if OPENAI_API_KEY is set instead

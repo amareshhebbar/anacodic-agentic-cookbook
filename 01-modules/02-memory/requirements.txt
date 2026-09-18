@@ -1,0 +1,12 @@
+# 01-modules/02-memory — stage-specific dependencies.
+# Install alongside the root requirements.txt:
+#   pip install -r requirements.txt -r 01-modules/02-memory/requirements.txt
+
+# Every notebook in this stage runs end to end on the standard library alone --
+# json, hashlib, math, pathlib, subprocess. Nothing below is needed to execute
+# any assert in any of the three notebooks.
+
+groq>=1.0    # 01-short-term.ipynb — optional: re-runs the truncated and untruncated
+             # prompts through a real model, if GROQ_API_KEY is set
+openai>=1.0  # 03-semantic-recall.ipynb — optional: runs the same MemoryStore on
+             # text-embedding-3-small, if OPENAI_API_KEY is set

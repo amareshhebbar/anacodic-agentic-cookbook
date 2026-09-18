@@ -3,7 +3,8 @@
 .env.*
 !.env.example
 
-# Data that must never travel — see prds/sep11_cookbook_secrets_and_exclusions.md
+# Data that must never travel: partner corpora, real student or patient
+# records, local caches, and anything a run wrote to disk.
 *.db
 *.sqlite
 *.sqlite3

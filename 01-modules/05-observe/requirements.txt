@@ -1,0 +1,16 @@
+# 01-modules/05-observe — stage-specific dependencies.
+# Install alongside the root requirements.txt:
+#   pip install -r requirements.txt -r 01-modules/05-observe/requirements.txt
+#
+# This stage adds nothing. All three notebooks run on the standard library
+# (json, uuid, time, datetime, dataclasses, contextlib, shutil, pathlib) plus
+# nbio.py at the repo root, and none of them makes a network call -- the cost
+# meter is fed synthetic token counts, the artifacts are local JSON, and the
+# trace records control flow through stubbed steps.
+#
+# Deliberately NOT here: opentelemetry, langsmith, langfuse, or any other
+# tracing SDK. 03-tracing.ipynb builds its recorder in ~60 lines of plain
+# Python, because a reader cannot learn what a trace is from an integration.
+
+python-dotenv>=1.0   # nbio.bootstrap() loads .env if it exists; optional, and no key is used
+jupyter>=1.0         # already in the root requirements.txt -- repeated so this file stands alone

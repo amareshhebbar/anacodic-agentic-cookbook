@@ -1,3 +1,6 @@
+# Copyright 2026 Anacodic AI Labs — https://anacodicai.org
+# SPDX-License-Identifier: Apache-2.0
+
 """Pass/fail rubric for the clinical-retrieval benchmark.
 
 Ported from `specialist-rag`'s `tests/benchmark/pass_rubric.py`, branch

@@ -1,6 +1,7 @@
 # Root-level: shared notebook plumbing only.
-# Each stage folder (01-modules/*/requirements.txt) pins what that stage needs —
-# install those too when working in a specific stage.
+# Each stage folder pins what that stage needs — 01-modules/*/requirements.txt,
+# and 01-modules/01-tools/*/requirements.txt for the sub-stages inside tools.
+# Install those too when working in a specific stage.
 python-dotenv>=1.0
 jupyter>=1.0
 nbformat>=5.10

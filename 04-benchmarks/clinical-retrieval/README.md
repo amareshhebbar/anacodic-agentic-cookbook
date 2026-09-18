@@ -33,7 +33,7 @@ For a configured retrieval + generation backend, `eval.py` reports:
 - **citation verification** (`citation_verification`) — not just whether the
   answer contains a PMCID/DOI-shaped string, but whether every identifier it
   cites is actually present in the papers that were retrieved. See
-  `citation_check.py` and `01-modules/06-bench/05-citation-and-rubric.ipynb`.
+  `citation_check.py` and `01-modules/01-tools/06-bench/05-citation-and-rubric.ipynb`.
 - **rubric verdict** (`rubric`) — a pass/fail attributable to a stage
   (retrieval, citation, DeepEval), not one undifferentiated pass/fail. See
   `pass_rubric.py` and the same notebook.
@@ -41,10 +41,10 @@ For a configured retrieval + generation backend, `eval.py` reports:
   catch: an answer with content, zero retrieved papers, and no citation
 - **DeepEval metrics** (optional, needs a judge model key): Faithfulness,
   Answer Relevancy, Contextual Precision, Contextual Recall — see
-  `01-modules/06-bench/02-deepeval-metrics.ipynb` for what each one actually
+  `01-modules/01-tools/06-bench/02-deepeval-metrics.ipynb` for what each one actually
   catches. The judge model is resolved by `judge_model.py`, which also warns
   when the judge and the pipeline under test are the same model — see
-  `01-modules/06-bench/06-judge-integrity-and-agreement.ipynb`.
+  `01-modules/01-tools/06-bench/06-judge-integrity-and-agreement.ipynb`.
 
 ## How to run it
 
@@ -78,7 +78,7 @@ Gold context — a hand-checked set of correct passages per question — require
 clinical judgment that only a domain expert can supply; it is not copied,
 generated, or invented here. See `gold/README.md` for the format and how to
 contribute one. `eval.py` and
-`01-modules/06-bench/03-gold-context-arm.ipynb` report the gold-context arm as
+`01-modules/01-tools/06-bench/03-gold-context-arm.ipynb` report the gold-context arm as
 "no gold" / skipped until entries exist.
 
 ## Two setup traps that each cost a day to find cold
@@ -113,7 +113,7 @@ here so a contributor doesn't lose a day rediscovering them:
 already imports and calls the first three on every run; `analyze_ratings.py`
 is a separate, offline tool for whenever a second person hand-rates the same
 answers, run directly rather than through `eval.py`. See
-`01-modules/06-bench/05-citation-and-rubric.ipynb` and
+`01-modules/01-tools/06-bench/05-citation-and-rubric.ipynb` and
 `06-judge-integrity-and-agreement.ipynb` for what each one catches, with real
 examples — including one known gap carried across honestly: the rubric's
 `overall_pass` does not currently fold in `citation_pass`, verified directly

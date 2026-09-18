@@ -1,3 +1,6 @@
+# Copyright 2026 Anacodic AI Labs — https://anacodicai.org
+# SPDX-License-Identifier: Apache-2.0
+
 """Compute inter-rater agreement statistics from paired rating exports.
 
 Ported from `specialist-rag`'s `tests/clinician_validation/analyze_ratings.py`,

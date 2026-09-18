@@ -1,3 +1,6 @@
+# Copyright 2026 Anacodic AI Labs — https://anacodicai.org
+# SPDX-License-Identifier: Apache-2.0
+
 """Deterministic citation verification for benchmark answers.
 
 Ported from `specialist-rag`'s `tests/benchmark/citation_check.py`,
@@ -9,7 +12,7 @@ papers actually retrieved. An answer citing a plausible-looking DOI that came
 from nowhere passes today. This module finishes that job: is every
 identifier the model cited actually present in the evidence it was given?
 
-This is the offline twin of `01-modules/05-gate/01-grounding-check.ipynb`'s
+This is the offline twin of `01-modules/01-tools/05-gate/01-grounding-check.ipynb`'s
 grounding check. Same question — is this citation real? — asked at two
 different times. Gate asks it live, on one answer, and refuses. This module
 asks it afterwards, over a stored run, and counts. Two modules checking "the

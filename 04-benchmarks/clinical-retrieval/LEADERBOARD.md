@@ -107,7 +107,7 @@ hooks), and run it.
 **Deliverable (DoD):** every setup problem hit along the way, each with its
 fix. Two are already known and documented in the stage README so you don't
 lose a day to them — see
-`01-modules/06-bench/README.md` for the domain-routing test defect and the
+`01-modules/01-tools/06-bench/README.md` for the domain-routing test defect and the
 Groq/Cloudflare User-Agent rejection. Report whatever else you hit that isn't
 already listed there.
 
