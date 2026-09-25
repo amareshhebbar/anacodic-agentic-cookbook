@@ -1,0 +1,17 @@
+# The corpus stays on your machine. It is licensed journal text, it is larger
+# than the 5 MB ceiling CONTRIBUTING.md enforces, and this repo is public.
+corpus/*
+!corpus/.gitkeep
+
+# Embeddings and any derived vectors
+*.npy
+*.npz
+*.faiss
+
+# Credentials, always
+.env
+*.key
+
+# Notebook noise
+.ipynb_checkpoints/
+__pycache__/

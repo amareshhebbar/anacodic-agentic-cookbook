@@ -1,0 +1,88 @@
+{
+  "_readme": "Queries whose answers should be findable in the corpus in corpus/. 'expected_terms' is what keyword precision is scored against and every term below was verified present in the corpus before this file was written. 'must_come_from' is deliberately NOT filled in: naming which chunk holds each answer is hand-verification work, it is the thing that makes recall measurable, and inventing it would make every number downstream meaningless.",
+
+  "_corpus": {
+    "source": "guidelines-generator, Ontario pipeline, domain 10",
+    "topic": "Postmastectomy breast reconstruction - incision location and nipple viability in nipple-sparing mastectomy",
+    "n_chunks": 680,
+    "chunk_types": { "prose": 411, "table": 202, "figure": 67 },
+    "built_with": {
+      "embedding_model": "text-embedding-3-large",
+      "dimension": 3072,
+      "tokenizer": "openai",
+      "max_tokens": 512,
+      "merge_peers": true,
+      "contextualize": true,
+      "repeat_table_header": true
+    },
+    "note_on_dimension": "The shipped embeddings.npy is 3072-dimensional and querying it requires an OpenAI key, because the QUERY has to be embedded by the same model. Only chunk_meta.jsonl is shipped here, so re-embed the text locally (Ollama nomic-embed-text is 768-dim) and record the model and dimension you used. Numbers produced at 768 CANNOT be compared with numbers produced at 3072 - the vectors live in different spaces."
+  },
+
+  "_warning_corpus_vs_benchmark": "This corpus is about BREAST RECONSTRUCTION. The 20 questions in 04-benchmarks/clinical-retrieval/questions.py are about BURNS and WOUNDS. They do not match, and running those questions against this corpus will return near-zero retrieval - which would look like a broken harness and is not. Use the queries below with this corpus; use questions.py with a burns/wounds corpus.",
+
+  "_provenance": "Queries derived from the frozen protocol protocol_pico.json, domain 10, clinical_question and its five outcomes. The protocol is SHA-256 frozen, so these are pre-registered questions rather than questions written to fit an answer.",
+
+  "queries": [
+    {
+      "id": "AQ-001",
+      "query": "In patients undergoing nipple-sparing mastectomy, does incision location affect rates of nipple and skin flap necrosis?",
+      "source": "protocol_pico.json domain 10 - the domain's own clinical question",
+      "expected_terms": ["nipple-sparing mastectomy", "periareolar", "inframammary", "necrosis"],
+      "must_come_from": null,
+      "verified_by": null
+    },
+    {
+      "id": "AQ-002",
+      "query": "What is the rate of total nipple necrosis by incision type after nipple-sparing mastectomy?",
+      "source": "protocol_pico.json domain 10 - outcome 1, importance CRITICAL",
+      "expected_terms": ["nipple necrosis", "periareolar", "inframammary"],
+      "must_come_from": null,
+      "verified_by": null
+    },
+    {
+      "id": "AQ-003",
+      "query": "What is the rate of partial nipple necrosis by incision type after nipple-sparing mastectomy?",
+      "source": "protocol_pico.json domain 10 - outcome 2, importance CRITICAL",
+      "expected_terms": ["nipple necrosis", "nipple-areola", "periareolar"],
+      "must_come_from": null,
+      "verified_by": null
+    },
+    {
+      "id": "AQ-004",
+      "query": "How does skin flap necrosis compare between inframammary fold and periareolar incisions?",
+      "source": "protocol_pico.json domain 10 - outcome 3, importance IMPORTANT",
+      "expected_terms": ["skin flap necrosis", "inframammary", "periareolar"],
+      "must_come_from": null,
+      "verified_by": null
+    },
+    {
+      "id": "AQ-005",
+      "query": "What odds ratios are reported for necrosis by incision type in nipple-sparing mastectomy?",
+      "source": "protocol_pico.json domain 10 - the effect measure the domain's evidence is graded on",
+      "expected_terms": ["odds ratio", "periareolar", "necrosis"],
+      "must_come_from": null,
+      "verified_by": null
+    }
+  ],
+
+  "_term_verification": {
+    "checked_on": "2026-09-20",
+    "method": "substring count over the text and embed_text fields of all 680 chunks",
+    "counts": {
+      "periareolar": 1393,
+      "inframammary": 579,
+      "inferolateral": 154,
+      "radial incision": 65,
+      "nipple necrosis": 191,
+      "nipple-areola": 2271,
+      "nac necrosis": 354,
+      "skin flap necrosis": 704,
+      "reconstructive failure": 4,
+      "nipple-sparing mastectomy": 743,
+      "odds ratio": 160
+    },
+    "note": "Every expected_term above appears in the corpus, so a zero score means retrieval missed it - not that the term was never there. 'reconstructive failure' occurs only 4 times, which is why no query above is scored on it alone."
+  },
+
+  "_your_next_step": "Fill must_come_from and verified_by by hand, for at least a few queries. Open the corpus, find the chunk that actually contains the answer, and record its chunk_id. Until that exists you can measure keyword precision but you CANNOT measure recall, because recall asks 'did the right chunk come back' and nothing yet defines which chunk is right."
+}

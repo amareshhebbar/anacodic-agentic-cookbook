@@ -1,0 +1,5 @@
+run_at,corpus,n_chunks,id,paper_count,keyword_precision,keywords_found,latency_ms,answered_without_evidence,gold_available
+2026-09-20T16:17:53+00:00,built-in sample - corpus/ is empty,4,B01,3,1.0,early excision|grafting|TBSA,0,False,False
+2026-09-20T16:17:53+00:00,built-in sample - corpus/ is empty,4,B02,3,0.0,,0,False,False
+2026-09-20T16:17:53+00:00,built-in sample - corpus/ is empty,4,W01,1,0.25,diabetic foot,0,False,False
+2026-09-20T16:17:53+00:00,built-in sample - corpus/ is empty,4,W02,3,0.0,,0,False,False
