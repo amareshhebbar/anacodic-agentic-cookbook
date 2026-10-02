@@ -1,0 +1,554 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d13" for="edge" attr.name="winner" attr.type="string" />
+  <key id="d12" for="edge" attr.name="diff" attr.type="double" />
+  <key id="d11" for="edge" attr.name="score_b" attr.type="double" />
+  <key id="d10" for="edge" attr.name="score_a" attr.type="double" />
+  <key id="d9" for="edge" attr.name="metric" attr.type="string" />
+  <key id="d8" for="edge" attr.name="query_id" attr.type="string" />
+  <key id="d7" for="edge" attr.name="relation" attr.type="string" />
+  <key id="d6" for="node" attr.name="error" attr.type="string" />
+  <key id="d5" for="node" attr.name="trial_num" attr.type="long" />
+  <key id="d4" for="node" attr.name="latency_ms" attr.type="long" />
+  <key id="d3" for="node" attr.name="keyword_precision" attr.type="double" />
+  <key id="d2" for="node" attr.name="paper_count" attr.type="long" />
+  <key id="d1" for="node" attr.name="label" attr.type="string" />
+  <key id="d0" for="node" attr.name="type" attr.type="string" />
+  <graph edgedefault="directed">
+    <node id="query:L01">
+      <data key="d0">query</data>
+      <data key="d1">L01</data>
+    </node>
+    <node id="provider:groq_llama">
+      <data key="d0">provider</data>
+      <data key="d1">groq_llama</data>
+    </node>
+    <node id="trial:d42b762a-9ce4-4d22-93d2-cf4f8c71e661">
+      <data key="d0">trial</data>
+      <data key="d2">0</data>
+      <data key="d3">0.0</data>
+      <data key="d4">6658</data>
+      <data key="d5">1</data>
+      <data key="d6">Error code: 429 - {'error': {'message': 'You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.', 'type': 'insufficient_quota', 'param': None, 'code': 'credit_balance_exhausted'}}</data>
+    </node>
+    <node id="trial:675b2d24-a16e-4bf2-8f84-22f84233fe5a">
+      <data key="d0">trial</data>
+      <data key="d2">6</data>
+      <data key="d3">1.0</data>
+      <data key="d4">335</data>
+      <data key="d5">1</data>
+      <data key="d6">Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}</data>
+    </node>
+    <node id="trial:523e6f5f-1b1e-4284-add2-8e472d8054a8">
+      <data key="d0">trial</data>
+      <data key="d2">6</data>
+      <data key="d3">1.0</data>
+      <data key="d4">1686</data>
+      <data key="d5">1</data>
+      <data key="d6" />
+    </node>
+    <node id="trial:19add014-f294-48bd-905c-eb9eae5b7641">
+      <data key="d0">trial</data>
+      <data key="d2">6</data>
+      <data key="d3">1.0</data>
+      <data key="d4">942</data>
+      <data key="d5">1</data>
+      <data key="d6" />
+    </node>
+    <node id="trial:a8941c01-c540-4ea3-92fe-b1b8b169de91">
+      <data key="d0">trial</data>
+      <data key="d2">6</data>
+      <data key="d3">1.0</data>
+      <data key="d4">1931</data>
+      <data key="d5">2</data>
+      <data key="d6" />
+    </node>
+    <node id="trial:a8944855-0ed6-4cb6-996c-6043d6ec61fc">
+      <data key="d0">trial</data>
+      <data key="d2">6</data>
+      <data key="d3">1.0</data>
+      <data key="d4">1321</data>
+      <data key="d5">3</data>
+      <data key="d6" />
+    </node>
+    <node id="provider:groq_qwen">
+      <data key="d0">provider</data>
+      <data key="d1">groq_qwen</data>
+    </node>
+    <node id="trial:71945009-a1a9-46d7-a815-1fc4601087ae">
+      <data key="d0">trial</data>
+      <data key="d2">6</data>
+      <data key="d3">1.0</data>
+      <data key="d4">804</data>
+      <data key="d5">1</data>
+      <data key="d6" />
+    </node>
+    <node id="trial:0ef422d2-67e5-4d6f-a29a-f298b13e6f03">
+      <data key="d0">trial</data>
+      <data key="d2">6</data>
+      <data key="d3">1.0</data>
+      <data key="d4">919</data>
+      <data key="d5">2</data>
+      <data key="d6" />
+    </node>
+    <node id="trial:9e66cf3e-3c87-45b5-8600-be4fe374db16">
+      <data key="d0">trial</data>
+      <data key="d2">6</data>
+      <data key="d3">1.0</data>
+      <data key="d4">913</data>
+      <data key="d5">3</data>
+      <data key="d6" />
+    </node>
+    <node id="query:L02">
+      <data key="d0">query</data>
+      <data key="d1">L02</data>
+    </node>
+    <node id="trial:554cf7bb-c6cf-423e-9553-383c2801a934">
+      <data key="d0">trial</data>
+      <data key="d2">4</data>
+      <data key="d3">1.0</data>
+      <data key="d4">1074</data>
+      <data key="d5">1</data>
+      <data key="d6" />
+    </node>
+    <node id="trial:2eb4a719-65fa-4af1-a0bb-c0489358bde5">
+      <data key="d0">trial</data>
+      <data key="d2">4</data>
+      <data key="d3">1.0</data>
+      <data key="d4">2391</data>
+      <data key="d5">2</data>
+      <data key="d6" />
+    </node>
+    <node id="trial:1be95022-9458-4bb0-938b-166d59b1d620">
+      <data key="d0">trial</data>
+      <data key="d2">4</data>
+      <data key="d3">1.0</data>
+      <data key="d4">15348</data>
+      <data key="d5">3</data>
+      <data key="d6" />
+    </node>
+    <node id="trial:aef71c0d-6676-4046-a514-995cf7476f0e">
+      <data key="d0">trial</data>
+      <data key="d2">4</data>
+      <data key="d3">1.0</data>
+      <data key="d4">916</data>
+      <data key="d5">1</data>
+      <data key="d6" />
+    </node>
+    <node id="trial:64af49c8-56e9-4ced-a317-3b5ff0eafa38">
+      <data key="d0">trial</data>
+      <data key="d2">4</data>
+      <data key="d3">1.0</data>
+      <data key="d4">912</data>
+      <data key="d5">2</data>
+      <data key="d6" />
+    </node>
+    <node id="trial:6a988443-f14c-4310-9841-fd8925654aa3">
+      <data key="d0">trial</data>
+      <data key="d2">4</data>
+      <data key="d3">1.0</data>
+      <data key="d4">15967</data>
+      <data key="d5">3</data>
+      <data key="d6" />
+    </node>
+    <node id="query:L03">
+      <data key="d0">query</data>
+      <data key="d1">L03</data>
+    </node>
+    <node id="trial:12339fdb-8b15-4310-bec7-d2cd17abfbca">
+      <data key="d0">trial</data>
+      <data key="d2">3</data>
+      <data key="d3">1.0</data>
+      <data key="d4">1935</data>
+      <data key="d5">1</data>
+      <data key="d6" />
+    </node>
+    <node id="trial:2753f6d6-1e8c-4aae-ac8a-9581ac4443aa">
+      <data key="d0">trial</data>
+      <data key="d2">3</data>
+      <data key="d3">1.0</data>
+      <data key="d4">14021</data>
+      <data key="d5">2</data>
+      <data key="d6" />
+    </node>
+    <node id="trial:bfd34e70-b1bb-493f-95f1-d7716ebecb2c">
+      <data key="d0">trial</data>
+      <data key="d2">3</data>
+      <data key="d3">1.0</data>
+      <data key="d4">16786</data>
+      <data key="d5">3</data>
+      <data key="d6" />
+    </node>
+    <node id="trial:3c9788e8-b7d1-44c1-8331-70ddecf68085">
+      <data key="d0">trial</data>
+      <data key="d2">3</data>
+      <data key="d3">1.0</data>
+      <data key="d4">1219</data>
+      <data key="d5">1</data>
+      <data key="d6" />
+    </node>
+    <node id="trial:e3185aea-64e7-4e25-8ccb-5a58db28cf03">
+      <data key="d0">trial</data>
+      <data key="d2">3</data>
+      <data key="d3">1.0</data>
+      <data key="d4">32249</data>
+      <data key="d5">2</data>
+      <data key="d6" />
+    </node>
+    <node id="trial:77c7fa98-d2c0-4a10-b5a1-ec2bc468586c">
+      <data key="d0">trial</data>
+      <data key="d2">3</data>
+      <data key="d3">1.0</data>
+      <data key="d4">24261</data>
+      <data key="d5">3</data>
+      <data key="d6" />
+    </node>
+    <node id="query:L04">
+      <data key="d0">query</data>
+      <data key="d1">L04</data>
+    </node>
+    <node id="trial:16cb46af-359e-402f-a311-4da5e3597a19">
+      <data key="d0">trial</data>
+      <data key="d2">5</data>
+      <data key="d3">0.667</data>
+      <data key="d4">1590</data>
+      <data key="d5">1</data>
+      <data key="d6" />
+    </node>
+    <node id="trial:6ada748a-2643-4faf-abdc-05feb4a6f728">
+      <data key="d0">trial</data>
+      <data key="d2">5</data>
+      <data key="d3">0.667</data>
+      <data key="d4">1978</data>
+      <data key="d5">2</data>
+      <data key="d6" />
+    </node>
+    <node id="trial:eeecee9f-df11-48d6-8b54-06c2b949bf7a">
+      <data key="d0">trial</data>
+      <data key="d2">5</data>
+      <data key="d3">0.667</data>
+      <data key="d4">2143</data>
+      <data key="d5">3</data>
+      <data key="d6" />
+    </node>
+    <node id="trial:a322a14b-1982-4018-b9b0-ee1fa408e21d">
+      <data key="d0">trial</data>
+      <data key="d2">5</data>
+      <data key="d3">0.667</data>
+      <data key="d4">1220</data>
+      <data key="d5">1</data>
+      <data key="d6" />
+    </node>
+    <node id="trial:fa837720-dfc9-41e7-8549-9183b3318441">
+      <data key="d0">trial</data>
+      <data key="d2">5</data>
+      <data key="d3">0.667</data>
+      <data key="d4">43250</data>
+      <data key="d5">2</data>
+      <data key="d6">Error code: 429 - {'error': {'message': "Request too large for model `qwen/qwen3.8-27b` in organization `org_01m2tjqndaexmvrshj20rm84xn` service tier `on_demand` on output tokens per minute (OTPM): Limit 1000, Requested 1678. The request's expected output tokens exceed the enforced limit; reduce max_tokens (or the request's expected output) and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing", 'type': 'tokens', 'code': 'rate_limit_exceeded'}}</data>
+    </node>
+    <node id="trial:ec92db1e-9d90-40c1-a181-073998312fcd">
+      <data key="d0">trial</data>
+      <data key="d2">5</data>
+      <data key="d3">0.667</data>
+      <data key="d4">1162</data>
+      <data key="d5">3</data>
+      <data key="d6" />
+    </node>
+    <node id="query:L05">
+      <data key="d0">query</data>
+      <data key="d1">L05</data>
+    </node>
+    <node id="trial:3cc905d1-2117-49a8-babc-6b0aedff2254">
+      <data key="d0">trial</data>
+      <data key="d2">4</data>
+      <data key="d3">1.0</data>
+      <data key="d4">1593</data>
+      <data key="d5">1</data>
+      <data key="d6" />
+    </node>
+    <node id="trial:0ba029a5-f43c-4c2d-9952-602a8ea33331">
+      <data key="d0">trial</data>
+      <data key="d2">4</data>
+      <data key="d3">1.0</data>
+      <data key="d4">1679</data>
+      <data key="d5">2</data>
+      <data key="d6" />
+    </node>
+    <node id="trial:82c68cc7-9751-4ce9-852b-c92778f5e697">
+      <data key="d0">trial</data>
+      <data key="d2">4</data>
+      <data key="d3">1.0</data>
+      <data key="d4">1732</data>
+      <data key="d5">3</data>
+      <data key="d6" />
+    </node>
+    <node id="trial:c99cb9c4-0446-4e22-89c1-c863e7e469fb">
+      <data key="d0">trial</data>
+      <data key="d2">4</data>
+      <data key="d3">1.0</data>
+      <data key="d4">5436</data>
+      <data key="d5">1</data>
+      <data key="d6">Error code: 429 - {'error': {'message': "Request too large for model `qwen/qwen3.8-27b` in organization `org_01m2tjqndaexmvrshj20rm84xn` service tier `on_demand` on output tokens per minute (OTPM): Limit 1000, Requested 1342. The request's expected output tokens exceed the enforced limit; reduce max_tokens (or the request's expected output) and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing", 'type': 'tokens', 'code': 'rate_limit_exceeded'}}</data>
+    </node>
+    <node id="trial:0c41e6ef-7a6f-4c04-bc19-adb067c90fe4">
+      <data key="d0">trial</data>
+      <data key="d2">4</data>
+      <data key="d3">1.0</data>
+      <data key="d4">997</data>
+      <data key="d5">2</data>
+      <data key="d6" />
+    </node>
+    <node id="trial:328bce8e-8c48-4ce1-9fec-b58149a7e658">
+      <data key="d0">trial</data>
+      <data key="d2">4</data>
+      <data key="d3">1.0</data>
+      <data key="d4">142</data>
+      <data key="d5">3</data>
+      <data key="d6">Error code: 429 - {'error': {'message': "Request too large for model `qwen/qwen3.8-27b` in organization `org_01m2tjqndaexmvrshj20rm84xn` service tier `on_demand` on output tokens per minute (OTPM): Limit 1000, Requested 1342. The request's expected output tokens exceed the enforced limit; reduce max_tokens (or the request's expected output) and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing", 'type': 'tokens', 'code': 'rate_limit_exceeded'}}</data>
+    </node>
+    <edge source="query:L01" target="trial:d42b762a-9ce4-4d22-93d2-cf4f8c71e661" id="0">
+      <data key="d7">tested_in</data>
+    </edge>
+    <edge source="query:L01" target="trial:675b2d24-a16e-4bf2-8f84-22f84233fe5a" id="0">
+      <data key="d7">tested_in</data>
+    </edge>
+    <edge source="query:L01" target="trial:523e6f5f-1b1e-4284-add2-8e472d8054a8" id="0">
+      <data key="d7">tested_in</data>
+    </edge>
+    <edge source="query:L01" target="trial:19add014-f294-48bd-905c-eb9eae5b7641" id="0">
+      <data key="d7">tested_in</data>
+    </edge>
+    <edge source="query:L01" target="trial:a8941c01-c540-4ea3-92fe-b1b8b169de91" id="0">
+      <data key="d7">tested_in</data>
+    </edge>
+    <edge source="query:L01" target="trial:a8944855-0ed6-4cb6-996c-6043d6ec61fc" id="0">
+      <data key="d7">tested_in</data>
+    </edge>
+    <edge source="query:L01" target="trial:71945009-a1a9-46d7-a815-1fc4601087ae" id="0">
+      <data key="d7">tested_in</data>
+    </edge>
+    <edge source="query:L01" target="trial:0ef422d2-67e5-4d6f-a29a-f298b13e6f03" id="0">
+      <data key="d7">tested_in</data>
+    </edge>
+    <edge source="query:L01" target="trial:9e66cf3e-3c87-45b5-8600-be4fe374db16" id="0">
+      <data key="d7">tested_in</data>
+    </edge>
+    <edge source="provider:groq_llama" target="provider:groq_qwen" id="0">
+      <data key="d7">compared_on</data>
+      <data key="d8">L01</data>
+      <data key="d9">keyword_precision</data>
+      <data key="d10">0.8333333333333334</data>
+      <data key="d11">1.0</data>
+      <data key="d12">-0.16666666666666663</data>
+      <data key="d13">groq_qwen</data>
+    </edge>
+    <edge source="provider:groq_llama" target="provider:groq_qwen" id="1">
+      <data key="d7">compared_on</data>
+      <data key="d8">L02</data>
+      <data key="d9">keyword_precision</data>
+      <data key="d10">1.0</data>
+      <data key="d11">1.0</data>
+      <data key="d12">0.0</data>
+      <data key="d13">tie</data>
+    </edge>
+    <edge source="provider:groq_llama" target="provider:groq_qwen" id="2">
+      <data key="d7">compared_on</data>
+      <data key="d8">L03</data>
+      <data key="d9">keyword_precision</data>
+      <data key="d10">1.0</data>
+      <data key="d11">1.0</data>
+      <data key="d12">0.0</data>
+      <data key="d13">tie</data>
+    </edge>
+    <edge source="provider:groq_llama" target="provider:groq_qwen" id="3">
+      <data key="d7">compared_on</data>
+      <data key="d8">L04</data>
+      <data key="d9">keyword_precision</data>
+      <data key="d10">0.6670000000000001</data>
+      <data key="d11">0.6670000000000001</data>
+      <data key="d12">0.0</data>
+      <data key="d13">tie</data>
+    </edge>
+    <edge source="provider:groq_llama" target="provider:groq_qwen" id="4">
+      <data key="d7">compared_on</data>
+      <data key="d8">L05</data>
+      <data key="d9">keyword_precision</data>
+      <data key="d10">1.0</data>
+      <data key="d11">1.0</data>
+      <data key="d12">0.0</data>
+      <data key="d13">tie</data>
+    </edge>
+    <edge source="trial:d42b762a-9ce4-4d22-93d2-cf4f8c71e661" target="provider:groq_llama" id="0">
+      <data key="d7">ran_on</data>
+    </edge>
+    <edge source="trial:675b2d24-a16e-4bf2-8f84-22f84233fe5a" target="provider:groq_llama" id="0">
+      <data key="d7">ran_on</data>
+    </edge>
+    <edge source="trial:523e6f5f-1b1e-4284-add2-8e472d8054a8" target="provider:groq_llama" id="0">
+      <data key="d7">ran_on</data>
+    </edge>
+    <edge source="trial:19add014-f294-48bd-905c-eb9eae5b7641" target="provider:groq_llama" id="0">
+      <data key="d7">ran_on</data>
+    </edge>
+    <edge source="trial:a8941c01-c540-4ea3-92fe-b1b8b169de91" target="provider:groq_llama" id="0">
+      <data key="d7">ran_on</data>
+    </edge>
+    <edge source="trial:a8944855-0ed6-4cb6-996c-6043d6ec61fc" target="provider:groq_llama" id="0">
+      <data key="d7">ran_on</data>
+    </edge>
+    <edge source="trial:71945009-a1a9-46d7-a815-1fc4601087ae" target="provider:groq_qwen" id="0">
+      <data key="d7">ran_on</data>
+    </edge>
+    <edge source="trial:0ef422d2-67e5-4d6f-a29a-f298b13e6f03" target="provider:groq_qwen" id="0">
+      <data key="d7">ran_on</data>
+    </edge>
+    <edge source="trial:9e66cf3e-3c87-45b5-8600-be4fe374db16" target="provider:groq_qwen" id="0">
+      <data key="d7">ran_on</data>
+    </edge>
+    <edge source="query:L02" target="trial:554cf7bb-c6cf-423e-9553-383c2801a934" id="0">
+      <data key="d7">tested_in</data>
+    </edge>
+    <edge source="query:L02" target="trial:2eb4a719-65fa-4af1-a0bb-c0489358bde5" id="0">
+      <data key="d7">tested_in</data>
+    </edge>
+    <edge source="query:L02" target="trial:1be95022-9458-4bb0-938b-166d59b1d620" id="0">
+      <data key="d7">tested_in</data>
+    </edge>
+    <edge source="query:L02" target="trial:aef71c0d-6676-4046-a514-995cf7476f0e" id="0">
+      <data key="d7">tested_in</data>
+    </edge>
+    <edge source="query:L02" target="trial:64af49c8-56e9-4ced-a317-3b5ff0eafa38" id="0">
+      <data key="d7">tested_in</data>
+    </edge>
+    <edge source="query:L02" target="trial:6a988443-f14c-4310-9841-fd8925654aa3" id="0">
+      <data key="d7">tested_in</data>
+    </edge>
+    <edge source="trial:554cf7bb-c6cf-423e-9553-383c2801a934" target="provider:groq_llama" id="0">
+      <data key="d7">ran_on</data>
+    </edge>
+    <edge source="trial:2eb4a719-65fa-4af1-a0bb-c0489358bde5" target="provider:groq_llama" id="0">
+      <data key="d7">ran_on</data>
+    </edge>
+    <edge source="trial:1be95022-9458-4bb0-938b-166d59b1d620" target="provider:groq_llama" id="0">
+      <data key="d7">ran_on</data>
+    </edge>
+    <edge source="trial:aef71c0d-6676-4046-a514-995cf7476f0e" target="provider:groq_qwen" id="0">
+      <data key="d7">ran_on</data>
+    </edge>
+    <edge source="trial:64af49c8-56e9-4ced-a317-3b5ff0eafa38" target="provider:groq_qwen" id="0">
+      <data key="d7">ran_on</data>
+    </edge>
+    <edge source="trial:6a988443-f14c-4310-9841-fd8925654aa3" target="provider:groq_qwen" id="0">
+      <data key="d7">ran_on</data>
+    </edge>
+    <edge source="query:L03" target="trial:12339fdb-8b15-4310-bec7-d2cd17abfbca" id="0">
+      <data key="d7">tested_in</data>
+    </edge>
+    <edge source="query:L03" target="trial:2753f6d6-1e8c-4aae-ac8a-9581ac4443aa" id="0">
+      <data key="d7">tested_in</data>
+    </edge>
+    <edge source="query:L03" target="trial:bfd34e70-b1bb-493f-95f1-d7716ebecb2c" id="0">
+      <data key="d7">tested_in</data>
+    </edge>
+    <edge source="query:L03" target="trial:3c9788e8-b7d1-44c1-8331-70ddecf68085" id="0">
+      <data key="d7">tested_in</data>
+    </edge>
+    <edge source="query:L03" target="trial:e3185aea-64e7-4e25-8ccb-5a58db28cf03" id="0">
+      <data key="d7">tested_in</data>
+    </edge>
+    <edge source="query:L03" target="trial:77c7fa98-d2c0-4a10-b5a1-ec2bc468586c" id="0">
+      <data key="d7">tested_in</data>
+    </edge>
+    <edge source="trial:12339fdb-8b15-4310-bec7-d2cd17abfbca" target="provider:groq_llama" id="0">
+      <data key="d7">ran_on</data>
+    </edge>
+    <edge source="trial:2753f6d6-1e8c-4aae-ac8a-9581ac4443aa" target="provider:groq_llama" id="0">
+      <data key="d7">ran_on</data>
+    </edge>
+    <edge source="trial:bfd34e70-b1bb-493f-95f1-d7716ebecb2c" target="provider:groq_llama" id="0">
+      <data key="d7">ran_on</data>
+    </edge>
+    <edge source="trial:3c9788e8-b7d1-44c1-8331-70ddecf68085" target="provider:groq_qwen" id="0">
+      <data key="d7">ran_on</data>
+    </edge>
+    <edge source="trial:e3185aea-64e7-4e25-8ccb-5a58db28cf03" target="provider:groq_qwen" id="0">
+      <data key="d7">ran_on</data>
+    </edge>
+    <edge source="trial:77c7fa98-d2c0-4a10-b5a1-ec2bc468586c" target="provider:groq_qwen" id="0">
+      <data key="d7">ran_on</data>
+    </edge>
+    <edge source="query:L04" target="trial:16cb46af-359e-402f-a311-4da5e3597a19" id="0">
+      <data key="d7">tested_in</data>
+    </edge>
+    <edge source="query:L04" target="trial:6ada748a-2643-4faf-abdc-05feb4a6f728" id="0">
+      <data key="d7">tested_in</data>
+    </edge>
+    <edge source="query:L04" target="trial:eeecee9f-df11-48d6-8b54-06c2b949bf7a" id="0">
+      <data key="d7">tested_in</data>
+    </edge>
+    <edge source="query:L04" target="trial:a322a14b-1982-4018-b9b0-ee1fa408e21d" id="0">
+      <data key="d7">tested_in</data>
+    </edge>
+    <edge source="query:L04" target="trial:fa837720-dfc9-41e7-8549-9183b3318441" id="0">
+      <data key="d7">tested_in</data>
+    </edge>
+    <edge source="query:L04" target="trial:ec92db1e-9d90-40c1-a181-073998312fcd" id="0">
+      <data key="d7">tested_in</data>
+    </edge>
+    <edge source="trial:16cb46af-359e-402f-a311-4da5e3597a19" target="provider:groq_llama" id="0">
+      <data key="d7">ran_on</data>
+    </edge>
+    <edge source="trial:6ada748a-2643-4faf-abdc-05feb4a6f728" target="provider:groq_llama" id="0">
+      <data key="d7">ran_on</data>
+    </edge>
+    <edge source="trial:eeecee9f-df11-48d6-8b54-06c2b949bf7a" target="provider:groq_llama" id="0">
+      <data key="d7">ran_on</data>
+    </edge>
+    <edge source="trial:a322a14b-1982-4018-b9b0-ee1fa408e21d" target="provider:groq_qwen" id="0">
+      <data key="d7">ran_on</data>
+    </edge>
+    <edge source="trial:fa837720-dfc9-41e7-8549-9183b3318441" target="provider:groq_qwen" id="0">
+      <data key="d7">ran_on</data>
+    </edge>
+    <edge source="trial:ec92db1e-9d90-40c1-a181-073998312fcd" target="provider:groq_qwen" id="0">
+      <data key="d7">ran_on</data>
+    </edge>
+    <edge source="query:L05" target="trial:3cc905d1-2117-49a8-babc-6b0aedff2254" id="0">
+      <data key="d7">tested_in</data>
+    </edge>
+    <edge source="query:L05" target="trial:0ba029a5-f43c-4c2d-9952-602a8ea33331" id="0">
+      <data key="d7">tested_in</data>
+    </edge>
+    <edge source="query:L05" target="trial:82c68cc7-9751-4ce9-852b-c92778f5e697" id="0">
+      <data key="d7">tested_in</data>
+    </edge>
+    <edge source="query:L05" target="trial:c99cb9c4-0446-4e22-89c1-c863e7e469fb" id="0">
+      <data key="d7">tested_in</data>
+    </edge>
+    <edge source="query:L05" target="trial:0c41e6ef-7a6f-4c04-bc19-adb067c90fe4" id="0">
+      <data key="d7">tested_in</data>
+    </edge>
+    <edge source="query:L05" target="trial:328bce8e-8c48-4ce1-9fec-b58149a7e658" id="0">
+      <data key="d7">tested_in</data>
+    </edge>
+    <edge source="trial:3cc905d1-2117-49a8-babc-6b0aedff2254" target="provider:groq_llama" id="0">
+      <data key="d7">ran_on</data>
+    </edge>
+    <edge source="trial:0ba029a5-f43c-4c2d-9952-602a8ea33331" target="provider:groq_llama" id="0">
+      <data key="d7">ran_on</data>
+    </edge>
+    <edge source="trial:82c68cc7-9751-4ce9-852b-c92778f5e697" target="provider:groq_llama" id="0">
+      <data key="d7">ran_on</data>
+    </edge>
+    <edge source="trial:c99cb9c4-0446-4e22-89c1-c863e7e469fb" target="provider:groq_qwen" id="0">
+      <data key="d7">ran_on</data>
+    </edge>
+    <edge source="trial:0c41e6ef-7a6f-4c04-bc19-adb067c90fe4" target="provider:groq_qwen" id="0">
+      <data key="d7">ran_on</data>
+    </edge>
+    <edge source="trial:328bce8e-8c48-4ce1-9fec-b58149a7e658" target="provider:groq_qwen" id="0">
+      <data key="d7">ran_on</data>
+    </edge>
+  </graph>
+</graphml>
