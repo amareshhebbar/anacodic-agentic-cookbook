@@ -1,3 +1,8 @@
+> **Moved from clinical-search** (`benchmark-proof`, f28601c) on 2026-10-02. Paths now point at
+> this folder's gitignored `corpus/`. Not moved: `harness.py` / `run_pilot.py` (they import
+> clinical-search internals), raw `single_*.json` (contains corpus text) and `results.db`.
+> Publish a run with `python provider/export_public_summary.py provider/results/single_<id>.json`.
+
 # ClinicalSearch Benchmarks
 
 Two independent benchmark suites under `amaresh_benchmark/`. Neither shares
@@ -13,7 +18,7 @@ amaresh_benchmark/
 ## Prerequisites
 
 ```bash
-cd ~/slack_boston/clinical-search
+cd anacodic-agentic-cookbook   # repo root
 python3 -m venv venv
 source venv/bin/activate
 pip install -U pip
@@ -37,17 +42,17 @@ extraction/
   metrics.py                  structural + embedding checks (offline)
   metadata_fidelity.py        CrossRef title/author cross-check (needs internet)
   run_extraction_benchmark.py CLI entrypoint
-  data/                       chunk_meta.jsonl, embeddings.npy, manifest.json (gitignored)
+  ../corpus/                  chunk_meta.jsonl, embeddings.npy, manifest.json (gitignored)
   results/                    <timestamp>.json (kept forever) + LEADERBOARD.md (overwritten each run)
 ```
 
 ### Run
 
 ```bash
-cd amaresh_benchmark/extraction
+cd 02-experiments/amaresh-eval-harness/extraction
 python run_extraction_benchmark.py \
-  --chunk-meta data/chunk_meta.jsonl \
-  --embeddings data/embeddings.npy \
+  --chunk-meta ../corpus/chunk_meta.jsonl \
+  --embeddings ../corpus/embeddings.npy \
   --mailto you@domain.com
 ```
 
@@ -94,19 +99,19 @@ provider/
   graph_store.py            builds + writes the comparison graph
   charts.py                 all PNG chart generation
   harness.py                legacy: Pinecone-backed provider switching (tests/benchmark/runner.py wrapper) — superseded by local_pipeline.py, kept for reference only
-  data/                     chunk_meta.jsonl, embeddings.npy, embeddings_ollama.npy (gitignored)
+  ../corpus/                chunk_meta.jsonl, embeddings.npy, embeddings_ollama.npy (gitignored)
   results/                  results.db, comparison.graphml, single_*.json, charts/*.png
 ```
 
 ### One-time setup: re-embed the corpus locally
 
 ```bash
-cd amaresh_benchmark/provider
-python reembed_corpus.py --chunk-meta data/chunk_meta.jsonl --out data/embeddings_ollama.npy
+cd 02-experiments/amaresh-eval-harness/provider
+python reembed_corpus.py --chunk-meta ../corpus/chunk_meta.jsonl --out ../corpus/embeddings_ollama.npy
 ```
 
-Writes `data/embeddings_ollama.npy` (680 x 768). Required once, or whenever
-`data/chunk_meta.jsonl` changes — OpenAI-embedded `embeddings.npy` and
+Writes `../corpus/embeddings_ollama.npy` (680 x 768). Required once, or whenever
+`../corpus/chunk_meta.jsonl` changes — OpenAI-embedded `embeddings.npy` and
 Ollama-embedded `embeddings_ollama.npy` are different vector spaces and
 cannot be mixed.
 
@@ -120,8 +125,8 @@ python run_local_pilot.py --list-models
 
 ```bash
 python run_local_pilot.py \
-  --chunk-meta data/chunk_meta.jsonl \
-  --embeddings data/embeddings_ollama.npy \
+  --chunk-meta ../corpus/chunk_meta.jsonl \
+  --embeddings ../corpus/embeddings_ollama.npy \
   --query-ids L01 L02 L03 L04 L05 \
   --providers groq_llama groq_qwen \
   --trials 3 \
@@ -205,7 +210,7 @@ answers to identical input — a reliability problem worth investigating.
 - No OpenAI dependency — corpus and queries are both embedded via a local
   Ollama model (`nomic-embed-text`). The only external API call in the
   entire `provider/` suite is the Groq synthesis call.
-- `data/` (chunk_meta.jsonl, embeddings*.npy, manifest.json) is gitignored
+- `../corpus/` (chunk_meta.jsonl, embeddings*.npy, manifest.json) is gitignored
   in both suites — only code and `results/` (metrics/graph/charts) belong
   in git.
 - `harness.py` is legacy: it wraps the production Pinecone pipeline via

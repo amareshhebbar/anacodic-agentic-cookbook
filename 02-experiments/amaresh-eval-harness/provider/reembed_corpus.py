@@ -21,8 +21,8 @@ def load_chunks(path: str) -> list[dict]:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--chunk-meta", default="data/chunk_meta.jsonl")
-    parser.add_argument("--out", default="data/embeddings_ollama.npy")
+    parser.add_argument("--chunk-meta", default=str(Path(__file__).resolve().parents[1] / "corpus" / "chunk_meta.jsonl"))
+    parser.add_argument("--out", default=str(Path(__file__).resolve().parents[1] / "corpus" / "embeddings_ollama.npy"))
     parser.add_argument("--model", default=EMBED_MODEL)
     parser.add_argument("--batch-size", type=int, default=16)
     args = parser.parse_args()

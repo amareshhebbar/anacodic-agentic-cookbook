@@ -97,7 +97,7 @@ runnable code — not a scaffold — and its own `requirements.txt`.
 
 | # | Folder | Contributor | Stage | Result |
 |---|---|---|---|---|
-| _(none yet)_ | | | | |
+| 1 | [amaresh-eval-harness](02-experiments/amaresh-eval-harness/) | Amaresh Hebbar | 06-bench | model comparison 0.94 vs 0.95 (tied); extraction quality leaderboard |
 
 Add your own folder under `02-experiments/` (an attempt) or `03-use-cases/`
 (a finished demo) — see [CONTRIBUTING.md](CONTRIBUTING.md).

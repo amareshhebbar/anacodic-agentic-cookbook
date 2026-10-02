@@ -1,130 +1,109 @@
 # amaresh-eval-harness
 
-An eval harness for the clinical-retrieval benchmark: a golden set, a runner
-that repeats a run N times, and the numbers that came out.
-
-## Status
+Measurement for clinical retrieval: a harness that runs a question many times
+and scores every run, plus a quality check of the corpus the retriever reads.
 
 | | |
 |---|---|
-| Owner | Amaresh |
+| Owner | Amaresh Hebbar |
 | Part | measurement — scores what the retrieval tools produce |
 | Benchmark | `04-benchmarks/clinical-retrieval/` |
+| Code origin | moved from `clinical-search` branch `benchmark-proof` (f28601c) on 2026-10-02 |
 
 ## What is here
 
 ```
-  goldens.json        queries + the clinical terms a correct answer must contain
-  01-*.ipynb          the experiments, one per notebook
-  results/            one CSV per experiment — raw runs, not summaries
+  01-run-one-question.ipynb   Exp 0 — one question, end to end, no key, no corpus
+  goldens.json                5 queries matched to the corpus + their expected terms
+  provider/                   Exp 1–2 — repeated-trial harness (local retrieval + Groq)
+    results/                    charts, comparison graph, per-trial CSV, public summary
+  extraction/                 Exp 3 — corpus quality checks + LEADERBOARD.md
+  corpus/                     the corpus — LOCAL ONLY, gitignored, never committed
+  HOW_TO_RUN.md               full run instructions for provider/ and extraction/
 ```
 
-## Experiment 1 — model comparison (done)
+## Results
 
-Two models, identical prompt, **identical retrieval evidence**, scored by
-keyword precision against the expected terms.
+Every number below is read from a file in this folder.
 
-```
-  design   5 queries x 2 models x 3 trials = 30 runs
-  models   openai/gpt-oss-120b  ·  qwen3-32b   (both via Groq)
-  metric   keyword precision — fraction of expected clinical terms present
-  result   both models 0.89-0.93 mean. Effectively tied.
-```
-
-**Read this as a generation-quality comparison, not a retrieval study.**
-Retrieval evidence was held constant, so nothing here says anything about
-whether retrieval repeats.
-
-A null result is still a result: on these five questions, keyword precision
-does not separate these two models. That is worth knowing before anyone
-spends money on the larger one.
-
-### Configuration, so nothing is compared that should not be
+### Exp 1 — model comparison (local pilot)
 
 ```
-  embedding dimension   768
+  design     5 queries (L01–L05) x 2 providers x 3 trials = 33 trial rows
+  retrieval  local exact cosine search over 680 chunks, top 8 (no vector DB)
+  embedding  768-dim, nomic-embed-text via Ollama
+  scoring    keyword precision against each query's expected clinical terms
+  result     28 runs succeeded, 5 failed on the provider side (see "What broke")
+             groq_llama 0.938 mean · groq_qwen 0.945 mean — effectively tied
+  file       provider/results/local_pilot_trials.csv, charts/*_by_provider.png
 ```
 
-Not 3072. This was reduced to fit available hardware. Numbers from this
-folder are **not comparable** to any index built at 3072 dimensions — the
-vectors live in different spaces and a similarity score from one means
-nothing against the other.
+**Read this as a generation comparison, not a retrieval study.** Retrieval is
+deterministic here: every query returned the same number of papers on every
+successful trial (L01 6 · L02 4 · L03 3 · L04 5 · L05 4). The one `0` in the
+CSV is a failed API call, not an empty search.
 
-## Experiment 2 — retrieval variance (next)
-
-The open question this folder exists for:
+### Exp 2 — one question, ten trials
 
 ```
-  six runs of ONE question have returned 4 / 0 / 4 / 5 / 3 / 3 papers
-  → so which number goes in the paper?
+  query      L01   model openai/gpt-oss-120b   trials 10
+  keyword precision   1.00 on every trial
+  groundedness        0.876 ± 0.004   (embedding similarity, answer vs evidence)
+  answer similarity   0.981            (embedding similarity between trials' answers)
+  papers retrieved    6 on every trial
+  latency             1.2 s – 12.6 s   (a 10x spread on identical requests)
+  file       provider/results/summary_single_L01.json, charts/single_L01_*.png
 ```
 
-Design: **one query, one model, one configuration, nothing varying but
-chance.** Report the spread — minimum, maximum, and how often zero papers
-came back — never the mean alone.
+### Exp 3 — extraction quality of the corpus
 
-On run count: for a failure that occurs about 1 run in 6, the chance of
-missing it in 3 runs is `(1 - 0.17)^3 = 0.57`. Seeing it once with 95%
-confidence needs `log(0.05) / log(0.83) ~ 16` runs.
+20 papers, 680 chunks — see `extraction/LEADERBOARD.md`. Headlines: no page
+gaps; 202/202 table chunks carry markdown and cells; 16 empty chunks (2.4%);
+6 table row-count mismatches; only 3/20 extracted titles match CrossRef.
+
+## What this does NOT show yet
 
 ```
-  runs    chance of missing a 1-in-6 failure entirely
-  ----    -------------------------------------------
-     3     57%
-     8     23%
-    16      5%
+  the open question         six runs of one question on the REAL clinical-search
+                            pipeline returned 4 / 0 / 4 / 5 / 3 / 3 papers.
+                            Is retrieval reproducible?
+  why Exp 1–2 can't answer  local exact search returns the same chunks every time,
+                            so only the model's wording can vary
+  next                      the real pipeline, one query, 16+ runs, printing WHICH
+                            papers come back each run — min, max, how often zero
 ```
 
-## Reused from the repo — not reimplemented here
+On run count: for a failure that occurs about 1 run in 6, the chance of missing
+it in n runs is `(5/6)^n` — 57% at 3 runs, 5% at 16.
+
+Known limits of the current metrics: keyword precision saturates at 1.0 on
+this corpus, and "groundedness" is embedding similarity, not a check that each
+claim is supported.
+
+## What broke on the way (from the run logs and setup)
+
+- No free OpenAI key; a $5 top-up was declined → switched to Groq free tier.
+- The original 3072-dim index was too heavy for a laptop → re-embedded at 768
+  with Ollama. **768 and 3072 results are not comparable** — different vector spaces.
+- Groq errors recorded in the CSV: `429 no credits remaining`, `404` for
+  `llama-3.3-70b-versatile` (model retired), `429 request too large` for qwen3.
+- Label to check: in `run_local_pilot.py`, provider `groq_qwen` maps to
+  `openai/gpt-oss-120b`.
+
+## Safety rules for this folder
+
+- `corpus/`, `*.npy`, `*.db`, `.env` and raw `provider/results/single_*.json`
+  are gitignored. Raw runs contain licensed journal text.
+- To publish a run: `python provider/export_public_summary.py provider/results/single_<id>.json`
+  — writes `summary_<id>.json` with text fields removed.
+- Not moved from clinical-search: `harness.py` and `run_pilot.py` (they import
+  clinical-search internals and do not run here).
+
+## Reused from the repo — not reimplemented
 
 | what | where |
 |---|---|
 | keyword precision | `04-benchmarks/clinical-retrieval/eval.py` |
-| the 20 questions and their `required_keywords` | `04-benchmarks/clinical-retrieval/questions.py` |
+| the 20 benchmark questions | `04-benchmarks/clinical-retrieval/questions.py` |
 | pass/fail thresholds | `04-benchmarks/clinical-retrieval/pass_rubric.py` |
-| judge abstraction, incl. the judge-shares-model check | `04-benchmarks/clinical-retrieval/judge_model.py` |
-
-Import these rather than copying them. Two scorers in one repo drift apart
-and then disagree, and nobody can tell which number was right.
-
-## Reading
-
-- `01-modules/01-tools/06-bench/` — the bench notebooks this scores against
-- `04-benchmarks/clinical-retrieval/README.md` — what the benchmark claims
-- `02-experiments/NOTEBOOK_STANDARD.md` — read before opening a blank notebook
-
----
-
-## Verified on the real corpus, 2026-09-20
-
-The notebook was run inside the repo with the real 680-chunk corpus present.
-It works, and it demonstrates the topic mismatch with numbers:
-
-```
-  corpus : local corpus (chunk_meta.jsonl)   680 chunks
-
-  retrieval is HEALTHY — real papers, plausible scores:
-    +0.3736  s12282-018-0908-y.pdf
-    +0.3565  The Breast Journal 2019 - Ng - Mastectomy flap necrosis...
-    +0.3524  00000637-201506000-00005.pdf
-
-  but scored against the BURNS benchmark:
-    id    papers  kw_prec
-    B01        3     0.00
-    B02        3     0.00
-    W01        3     0.00
-    W02        3     0.00
-```
-
-**Three papers retrieved every time, zero keyword precision every time.** The
-retriever is working; the questions are about burns and wounds and the corpus
-is about breast reconstruction. Nothing is broken.
-
-This is why `goldens.json` exists and why its queries come from the corpus's
-own frozen protocol rather than from `questions.py`. Run `goldens.json`'s five
-queries against this corpus and the numbers mean something; run the benchmark's
-twenty and they do not.
-
-It is also a small lesson worth keeping: **a healthy-looking retrieval score
-and a zero downstream score is a topic mismatch, not a bug.** The two failures
-look identical from the outside.
+| judge abstraction + judge-shares-model check | `04-benchmarks/clinical-retrieval/judge_model.py` |

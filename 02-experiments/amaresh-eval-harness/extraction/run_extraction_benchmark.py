@@ -70,8 +70,8 @@ def write_leaderboard(structural: dict, fidelity: dict | None) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--chunk-meta", default="chunk_meta.jsonl")
-    parser.add_argument("--embeddings", default="embeddings.npy")
+    parser.add_argument("--chunk-meta", default=str(Path(__file__).resolve().parents[1] / "corpus" / "chunk_meta.jsonl"))
+    parser.add_argument("--embeddings", default=str(Path(__file__).resolve().parents[1] / "corpus" / "embeddings.npy"))
     parser.add_argument("--mailto", default=None)
     parser.add_argument("--skip-crossref", action="store_true")
     args = parser.parse_args()

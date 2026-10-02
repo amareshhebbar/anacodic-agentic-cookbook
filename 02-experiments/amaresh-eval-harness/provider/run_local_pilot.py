@@ -6,7 +6,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-load_dotenv(Path(__file__).resolve().parents[2] / ".env")
+load_dotenv(Path(__file__).resolve().parents[3] / ".env")  # repo root
 
 from groq import Groq
 
@@ -61,8 +61,8 @@ def validate_models(models: dict[str, str]) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--chunk-meta", default="data/chunk_meta.jsonl")
-    parser.add_argument("--embeddings", default="data/embeddings.npy")
+    parser.add_argument("--chunk-meta", default=str(Path(__file__).resolve().parents[1] / "corpus" / "chunk_meta.jsonl"))
+    parser.add_argument("--embeddings", default=str(Path(__file__).resolve().parents[1] / "corpus" / "embeddings.npy"))
     parser.add_argument("--query-ids", nargs="+", default=["L01", "L02", "L03"])
     parser.add_argument("--providers", nargs="+", default=["groq_llama", "groq_qwen"])
     parser.add_argument("--trials", type=int, default=3)

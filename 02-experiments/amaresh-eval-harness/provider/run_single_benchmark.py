@@ -6,7 +6,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-load_dotenv(Path(__file__).resolve().parents[2] / ".env")
+load_dotenv(Path(__file__).resolve().parents[3] / ".env")  # repo root
 
 from local_queries import LOCAL_BENCHMARK_QUERIES
 from local_retrieval import load_corpus
@@ -48,8 +48,8 @@ def faithfulness_scores(answers: list[str], contexts: list[str]) -> list[float]:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--chunk-meta", default="data/chunk_meta.jsonl")
-    parser.add_argument("--embeddings", default="data/embeddings_ollama.npy")
+    parser.add_argument("--chunk-meta", default=str(Path(__file__).resolve().parents[1] / "corpus" / "chunk_meta.jsonl"))
+    parser.add_argument("--embeddings", default=str(Path(__file__).resolve().parents[1] / "corpus" / "embeddings_ollama.npy"))
     parser.add_argument("--query-id")
     parser.add_argument("--query")
     parser.add_argument("--required-keywords", nargs="*", default=[])
