@@ -8,3 +8,7 @@ data/
 # notebook cruft
 .ipynb_checkpoints/
 .DS_Store
+
+# scratch output from notebook demo cells
+results_demo/
+results_smoketest/

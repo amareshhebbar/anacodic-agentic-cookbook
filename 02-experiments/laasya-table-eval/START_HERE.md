@@ -1,139 +1,183 @@
-# Start here, Laasya
+# Start here
 
-Read this once, top to bottom. It explains the project, your role, and exactly
-what to do. Then go to `FIRST_TASK.md`.
+Read this once, top to bottom. It covers the project, the setup, and the tasks.
 
 ---
 
 ## 1. What the project is about
 
-Some answers only exist inside a **table**. For example, a medical paper might
-never say in its text how many patients were in a group, but a table shows it:
+Some answers exist only inside a **table**. A paper may never state a number in
+its text, but a table shows it:
 
 ```
   | Group                     | Donors | Rate   |
   | Female fertility unknown  |   27   | 14.5%  |   <- the answer is this cell
 ```
 
-We are testing how well AI can answer questions like
-*"How many donors were in the 'fertility unknown' group?"*
-when the answer is only in a table.
+The project measures how well an AI answers questions like *"How many donors
+were in the fertility-unknown group?"* when the answer is only in a table.
 
-There are two kinds of question, and they are very different:
-
-```
-  LOOKUP   "How many donors?"            -> just FIND the cell          (easy)
-  COMPUTE  "What percentage is that?"    -> find cells, then CALCULATE  (hard)
-```
-
-We built an **AI agent** that can call tools - a calculator, or code that reads
-the table - instead of doing maths in its head. We are measuring whether those
-tools actually help.
-
-## 2. What we are trying to find out
-
-Honestly: **we do not know yet, and that is fine.** So far the plain AI and the
-tool-using agent score about the same. Before we can trust any of those numbers,
-we hit a problem that only a human can solve - and that problem is your job.
-
-## 3. The problem being addressed
-
-The benchmark we use ships a "correct answer" for each question. We found a case
-where that correct answer **cannot be obtained from the table we were given**:
+Questions fall into two families, and they are different problems:
 
 ```
-  Question: total length of the forward + reverse primers for Promoter & Exon 1
-  The table gives:  forward = 24 characters,  reverse = 22 characters
-                    24 + 22 = 46
-  The benchmark says the correct answer is:  48
+  LOOKUP   "How many donors?"             -> find the cell
+  COMPUTE  "What percentage is that?"     -> find cells, then calculate
 ```
 
-So the AI answered 46 - which is right - and was marked **wrong**.
+Results are always reported split this way, never blended.
 
-If that happens often, then every accuracy score we report is partly measuring
-**bad labels** instead of a bad AI. That would change how the entire paper
-reports its results.
+We built an agent that can call tools - a calculator, and code that queries the
+table as a dataframe - instead of computing internally. The open question is
+whether those tools improve accuracy.
 
-This requires a person to read each table and judge.
+## 2. Scope of this folder
 
-## 4. Your tasks, in order
+This folder is the **evaluation** half of the project. The agent itself lives in
+`../rashan-table-agent/`. The work here is to run the experiment, analyse the
+results, and write up what they show.
 
-Only task 1 is ready now. The others come later - do not start them yet.
-
-```
-  T1  MANUAL AUDIT (now, ~2-3 hours, no coding)
-      60 questions. For each: can the "correct answer" actually be obtained
-      from the table? And if the AI was wrong, why?
-      -> audit/AUDIT_INSTRUCTIONS.md has definitions + a worked example
-
-  T2  SUMMARISE the audit into a small table (~1 hour)
-
-  T3  ACCURACY TABLES + FIGURES from the experiment results (light coding;
-      a script that already works is in this folder)
-
-  T4  SECOND-RATER CHECK: Rashan re-does 20% of your items independently, and
-      you measure how often you two agree. Reviewers always ask for this.
-
-  T5  WRITE the Methods paragraph describing your audit protocol - in your own
-      words, because it is your protocol.
-```
-
-## 5. Setting up (about 10 minutes)
+## 3. Setting up (about 10 minutes)
 
 ```bash
-# 1. On GitHub, fork anacodicAI-labs/anacodic-agentic-cookbook  (your own copy)
+# 1. On GitHub, fork anacodicAI-labs/anacodic-agentic-cookbook
 git clone https://github.com/<your-username>/anacodic-agentic-cookbook.git
 cd anacodic-agentic-cookbook
+git remote add upstream https://github.com/anacodicAI-labs/anacodic-agentic-cookbook.git
 
-# 2. Make your own branch
+# 2. Work on your own branch
 git checkout -b laasya/table-eval
-
-# 3. Your folder is:  02-experiments/laasya-table-eval/
 ```
 
-Each time you finish some work:
+Put an API key in a file named `.env` at the repository root:
+
+```
+OPENAI_API_KEY=sk-...
+```
+
+`.env` is gitignored. Never commit a key and never paste one into a message.
+Set a spending limit on the account (Settings > Limits). The code also stops at
+`BUDGET_USD`, which defaults to $2.
+
+To submit work:
 
 ```bash
 git add 02-experiments/laasya-table-eval/
-git commit -m "one line describing what you did"
-git push origin laasya/table-eval
-# then open a Pull Request on GitHub so Rashan can review it
+git commit -m "describe the change"
+git push -u origin laasya/table-eval
+# then open a pull request into anacodicAI-labs:main
 ```
 
-## 6. About the API key
+## 4. Background reading (~45 min, no key required)
 
-An API key lets code call an AI model, and **calls cost real money**. A key is
-in the project's `.env` file at the repo root.
+Outputs are saved in these notebooks, so they can be read without running.
 
 ```
-  · NEVER commit a key, and never paste one into chat, a notebook, or a file
-    that gets committed. `.env` is already gitignored - leave it that way.
-  · You do NOT need the key for your audit (T1). It needs no AI calls at all.
-  · Do not run large experiments. Those are run separately; spending is capped by the code at a set dollar
-    limit.
-  · If a key may have been exposed, report it immediately so it can be revoked.
+../rashan-table-agent/01_the_data.ipynb    the task, and the two question families
+../rashan-table-agent/04_the_agent.ipynb   what the agent does and which tools it calls
 ```
 
-## 7. The one rule
+## 5. The tasks
 
-> **Only edit files inside `02-experiments/laasya-table-eval/`.**
-> Never change anyone else's folder.
+```
+ 1. RUN             baseline vs cot vs agent on 50 Biology questions
+ 2. ANALYSE         accuracy per configuration, split Lookup vs Compute,
+                    reported as mean +/- spread, plus the bar figure
+ 3. ERROR ANALYSIS  sort the wrong answers into label_wrong / wrong_cell /
+                    math_error / format_only / unanswerable
+ 4. TRANSFER        the same comparison on CompSci, to show the result is not
+                    specific to biology
+ 5. WRITE           the Results section and the evaluation half of Methods
+```
 
-That single rule is what lets several people work in the same project without
-breaking each other's work. Nothing you do inside your own folder can damage
-anything, and nothing becomes final until a Pull Request is reviewed.
+Steps 1-3 correspond to the three notebooks in this folder. Step 4 is step 1
+with `--domain CompSci`.
 
-## 8. How to ask for help
+| # | Notebook | Produces |
+|---|---|---|
+| 01 | `01_run_the_experiment.ipynb` | `results/*.csv` from the real run |
+| 02 | `02_analyse_results.ipynb` | accuracy tables and the figure |
+| 03 | `03_error_analysis.ipynb` | the failure categories |
 
-Ask early and often - that is normal here, not a sign of struggling.
+A standalone script, `analyze_results.py`, performs the same analysis as
+notebook 02 from the command line:
 
-- If an audit item is confusing after ~5 minutes, mark it `unsure`, add a note,
-  and move on. **Ambiguous cases are findings, not mistakes.**
-- If something is broken, nothing is your fault: say what you ran and paste the
-  error.
-- If a result looks boring (e.g. everything checks out fine), that is a real and
-  publishable result. Do not try to find problems that are not there.
+```bash
+python 02-experiments/laasya-table-eval/analyze_results.py
+```
 
----
+If it reports no CSVs found, place result files in `results-input/` first; a
+sample file is already provided.
 
-Next: open `FIRST_TASK.md`, then `audit/AUDIT_INSTRUCTIONS.md`.
+## 6. The commands
+
+Run these from `../rashan-table-agent/`:
+
+```bash
+# Task 1 - main run (Biology)
+BUDGET_USD=2 python run_eval.py --configs baseline,cot,agent \
+    --limit 50 --repeats 3 --sample-seed 7 --grounded-only \
+    2>&1 | tee results/run_biology.log
+
+# Task 4 - transfer arm (CompSci)
+BUDGET_USD=2 python run_eval.py --domain CompSci --configs baseline,agent \
+    --limit 50 --repeats 3 --sample-seed 7 --grounded-only \
+    2>&1 | tee results/run_compsci.log
+```
+
+Why these flags:
+
+```
+ --repeats 3      a spread is the variation between runs; one run cannot
+                  produce the mean +/- spread that step 2 asks for
+ --sample-seed 7  file order groups questions by source table, so the first 50
+                  can come from a single table and misrepresent the benchmark
+ --grounded-only  keeps items whose gold answer is present in the table
+ tee              keeps a log that can be attached to a bug report
+```
+
+Both runs together cost well under $1 on `gpt-4o-mini`.
+
+## 7. Where to run what
+
+```
+ JUPYTER    a small smoke test (2-5 questions) to confirm the key works, and
+            all the analysis (notebooks 02 and 03).
+ TERMINAL   the full run. It streams progress, survives, and is easy to
+            restart. A notebook buffers subprocess output, and a kernel
+            restart loses the run.
+```
+
+## 8. Notes
+
+```
+ · run_eval.py OVERWRITES results/*.csv - copy them aside or commit before
+   re-running, or the previous run is lost
+ · notebooks conflict badly in git; commit one only when the change is intended
+ · record every run in results/RUN_LOG.md: date, the exact command, the model,
+   N questions, repeats, total spend, and anything that went wrong
+ · if a run stops early that is the budget ceiling working as intended. It
+   saves what finished and prints where it stopped.
+```
+
+## 9. Reporting results
+
+```
+ · report Lookup and Compute separately
+ · report the mean and the spread across repeats
+ · do not claim a difference smaller than the run-to-run spread
+ · if no configuration improved accuracy, state that
+```
+
+A negative result is reported as found. It is useful to anyone deciding where
+to invest effort.
+
+## 10. The one rule
+
+> Only edit files inside `02-experiments/laasya-table-eval/`.
+
+That boundary is what allows several people to work in the same repository
+without conflicts. Nothing inside this folder can break the wider project, and
+nothing is final until a pull request is reviewed.
+
+Ask a maintainer if anything is unclear. Record ambiguous cases rather than
+guessing; they are findings in their own right.

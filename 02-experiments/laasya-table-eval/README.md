@@ -29,8 +29,8 @@ each other's work.
 
 | file / folder | what it is |
 |---|---|
-| `SETUP_FIRST.md` | do this once before anything else |
-| `FIRST_TASK.md` | your exact first task, step by step |
+
+| `START_HERE.md` | the project, the setup and the tasks - read this first |
 | `analyze_results.py` | reads result CSVs and prints accuracy + makes a figure |
 | `results-input/` | result CSVs produced by the agent runs |
 | `results/` | your outputs land here (tables, figures) |
