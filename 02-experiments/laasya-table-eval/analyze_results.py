@@ -23,7 +23,7 @@ def load() -> pd.DataFrame:
     if not files:
         raise SystemExit(
             f"no CSVs found in {IN}. Put a result file there first "
-            f"(a real sample is provided — see FIRST_TASK.md)."
+            f"(a sample file is provided — see START_HERE.md)."
         )
     return pd.concat([pd.read_csv(f) for f in files], ignore_index=True)
 
