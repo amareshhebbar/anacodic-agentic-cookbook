@@ -62,5 +62,5 @@ Steps 1-3 map onto your three notebooks. Step 4 is step 1 again with
 
 > Only edit files inside `laasya-table-eval/`. Never change anyone else's folder.
 
-Ask Rashan whenever something is unclear. Ambiguous cases are findings, not
-mistakes - write them down rather than guessing.
+Ask a maintainer if anything is unclear. Record ambiguous cases rather than
+guessing; they are findings in their own right.

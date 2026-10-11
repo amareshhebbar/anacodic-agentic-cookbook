@@ -36,7 +36,7 @@ Honestly: **we do not know yet, and that is fine.** So far the plain AI and the
 tool-using agent score about the same. Before we can trust any of those numbers,
 we hit a problem that only a human can solve - and that problem is your job.
 
-## 3. The problem you are solving (your contribution)
+## 3. The problem being addressed
 
 The benchmark we use ships a "correct answer" for each question. We found a case
 where that correct answer **cannot be obtained from the table we were given**:
@@ -54,8 +54,7 @@ If that happens often, then every accuracy score we report is partly measuring
 **bad labels** instead of a bad AI. That would change how the entire paper
 reports its results.
 
-Nobody can settle this with code. It needs a person to read each table and
-judge. **That is your task, and it is why you are first author on this part.**
+This requires a person to read each table and judge.
 
 ## 4. Your tasks, in order
 
@@ -79,7 +78,7 @@ Only task 1 is ready now. The others come later - do not start them yet.
       words, because it is your protocol.
 ```
 
-## 5. Setting up (10 minutes, do it with Rashan)
+## 5. Setting up (about 10 minutes)
 
 ```bash
 # 1. On GitHub, fork anacodicAI-labs/anacodic-agentic-cookbook  (your own copy)
@@ -110,10 +109,9 @@ in the project's `.env` file at the repo root.
   · NEVER commit a key, and never paste one into chat, a notebook, or a file
     that gets committed. `.env` is already gitignored - leave it that way.
   · You do NOT need the key for your audit (T1). It needs no AI calls at all.
-  · Do not run large experiments. Rashan runs those; spending is capped on his
-    side (the code stops automatically at a set dollar limit).
-  · If you ever think a key leaked, tell Rashan immediately - keys can be
-    revoked in seconds. It is never a disaster if you say something early.
+  · Do not run large experiments. Those are run separately; spending is capped by the code at a set dollar
+    limit.
+  · If a key may have been exposed, report it immediately so it can be revoked.
 ```
 
 ## 7. The one rule

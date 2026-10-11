@@ -1,6 +1,6 @@
 # laasya-table-eval — Evaluation & failure analysis for the table-QA agent
 
-**Owner:** Laasya (first-author evaluation contribution)
+**Scope:** evaluation and analysis
 **Status:** scaffolded 2026-10-02.
 
 ## What this folder is
@@ -32,7 +32,7 @@ each other's work.
 | `SETUP_FIRST.md` | do this once before anything else |
 | `FIRST_TASK.md` | your exact first task, step by step |
 | `analyze_results.py` | reads result CSVs and prints accuracy + makes a figure |
-| `results-input/` | drop the agent's CSVs here (handed to you by Rashan) |
+| `results-input/` | result CSVs produced by the agent runs |
 | `results/` | your outputs land here (tables, figures) |
 
 Written to [NOTEBOOK_STANDARD.md](../NOTEBOOK_STANDARD.md) when you add notebooks:
