@@ -92,8 +92,8 @@ def _extract_final(text: str) -> str:
 def _create_with_retry(client, *, model, messages, temperature=0.0, max_tries=8):
     """Call chat.completions.create, retrying on rate-limit (429) with backoff.
 
-    Free-tier OpenAI accounts cap at ~10 requests/min; honor the server's
-    suggested wait when present, else back off exponentially. Fails loud after
+    Providers enforce per-minute request limits. Honour the server's suggested
+    wait when present, otherwise back off exponentially. Fails loud after
     max_tries rather than returning a stub."""
     for attempt in range(1, max_tries + 1):
         try:
@@ -105,9 +105,9 @@ def _create_with_retry(client, *, model, messages, temperature=0.0, max_tries=8)
             # A per-DAY cap (RPD) won't clear within a run — fail loud immediately.
             if is_rate and ("per day" in msg.lower() or "rpd" in msg.lower()):
                 raise RuntimeError(
-                    "Daily request cap reached (free-tier RPD exhausted). Add a "
-                    "payment method to the provider, wait for the daily reset, or "
-                    "switch provider via LLM_PROVIDER. Original: " + msg)
+                    "Daily request limit reached for this model. Wait for the "
+                    "limit to reset, raise it with the provider, or select "
+                    "another provider via LLM_PROVIDER. Original: " + msg)
             if not is_rate or attempt == max_tries:
                 raise
             m = re.search(r"try again in (?:(\d+)m)?([\d.]+)s", msg)

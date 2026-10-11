@@ -14,8 +14,8 @@ cd anacodic-agentic-cookbook
 # 2. branch, named to match this folder
 git checkout -b rashan/table-agent
 
-# 3. this folder already lives at 02-experiments/rashan-t/ — open from there
-jupyter notebook 02-experiments/rashan-t/01-load-scitableqa.ipynb
+# 3. open the first notebook
+jupyter notebook 02-experiments/rashan-table-agent/01_the_data.ipynb
 ```
 
 ## Getting the data (SciTableQA, Biology subset)
@@ -30,7 +30,7 @@ so download the raw files and parse them — do **not** rely on `load_dataset()`
 python - <<'PY'
 from huggingface_hub import snapshot_download
 snapshot_download("Kehindeajayi01/SciTableQA", repo_type="dataset",
-                  local_dir="02-experiments/rashan-t/data/scitableqa",
+                  local_dir="02-experiments/rashan-table-agent/data/scitableqa",
                   allow_patterns=["Amazon-Extracted-Tables/Biology/*", "Annotated/*"])
 PY
 ```
