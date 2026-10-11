@@ -38,7 +38,7 @@ PY
 Everything under `data/` is **gitignored — never commit it** (size + we keep the
 public repo clean).
 
-## Two things that will bite you
+## Notes
 
 1. **Write the embedding dimension next to every number.** A 768-dim (local
    `nomic-embed-text`) result and a 3072-dim (`text-embedding-3-large`) result

@@ -81,5 +81,5 @@ from this table. So you would write:
    common failure category was, and anything that surprised you.
 3. Commit and open a Pull Request (see `../SETUP_FIRST.md`).
 
-Ask Rashan whenever something is ambiguous — ambiguous cases are findings too,
-not mistakes.
+Ask a maintainer if anything is ambiguous. Record ambiguous cases; they are
+findings in their own right.

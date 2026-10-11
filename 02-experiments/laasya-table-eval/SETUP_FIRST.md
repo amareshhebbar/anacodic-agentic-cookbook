@@ -2,7 +2,7 @@
 
 You need your own copy of the cookbook on GitHub, then this folder opens inside it.
 
-## One-time setup (do this WITH Rashan the first time — ~10 min)
+## One-time setup (~10 min)
 
 ```bash
 # 1. On github.com, open anacodicAI-labs/anacodic-agentic-cookbook and click "Fork".
@@ -40,4 +40,5 @@ it right now.
 ## If you get stuck
 
 Nothing here can break the shared project — you only ever touch your own folder,
-and nothing is final until a Pull Request is reviewed. Ask Rashan; that's normal.
+and nothing is final until a pull request is reviewed. Ask a maintainer if
+anything is unclear.
