@@ -79,7 +79,7 @@ from this table. So you would write:
 1. Save `audit_sheet.csv`.
 2. Write 5-8 sentences in `../results/NOTES.md`: how many were `no`, what the most
    common failure category was, and anything that surprised you.
-3. Commit and open a Pull Request (see `../SETUP_FIRST.md`).
+3. Commit and open a pull request (see `../START_HERE.md`).
 
 Ask a maintainer if anything is ambiguous. Record ambiguous cases; they are
 findings in their own right.

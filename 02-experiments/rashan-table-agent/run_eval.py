@@ -58,15 +58,15 @@ def _agent(q, table, temp):
 REGISTRY = {"baseline": _baseline, "cot": _cot, "agent": _agent}
 
 
-def _write(name, rows):
+def _write(name, rows, out_dir="results"):
     if not rows:
         return
-    os.makedirs("results", exist_ok=True)
-    with open(f"results/{name}.csv", "w", newline="") as f:
+    os.makedirs(out_dir, exist_ok=True)
+    with open(os.path.join(out_dir, f"{name}.csv"), "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
         w.writeheader()
         w.writerows(rows)
-    print(f"  wrote results/{name}.csv ({len(rows)} rows)")
+    print(f"  wrote {os.path.join(out_dir, name)}.csv ({len(rows)} rows)")
 
 
 def main():
@@ -76,6 +76,9 @@ def main():
     ap.add_argument("--limit", type=int, default=100, help="number of questions")
     ap.add_argument("--repeats", type=int, default=1)
     ap.add_argument("--temperature", type=float, default=0.0)
+    ap.add_argument("--out-dir", default="results",
+                    help="where to write the result CSVs; point a demo run at a "
+                         "scratch directory so it cannot overwrite committed results")
     ap.add_argument("--sample-seed", type=int, default=None,
                     help="randomly sample --limit questions with this seed "
                          "instead of taking the first N in file order")
@@ -153,7 +156,7 @@ def main():
 
     print("\nsaved:")
     for c in configs:
-        _write(c, last_rows[c])
+        _write(c, last_rows[c], args.out_dir)
     print("\n=== spend ===")
     print(meter.report())
 
