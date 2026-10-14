@@ -1,0 +1,30 @@
+[questions_only] best retriever is bm25: ndcg@10 = 0.581 (95% CI 0.562 to 0.599), hit@10 = 0.773, mrr@10 = 0.583.
+    vs dense: ndcg@10 0.427, a real difference (paired CI +0.135 to +0.173 for bm25 minus dense).
+    vs dense_hnsw: ndcg@10 0.412, a real difference (paired CI +0.149 to +0.190 for bm25 minus dense_hnsw).
+    vs hybrid: ndcg@10 0.544, a real difference (paired CI +0.023 to +0.051 for bm25 minus hybrid).
+    diagnosis for bm25: 22.7% missed, 14.1% found low, 63.2% found in top 3.
+[full_with_decoys] best retriever is bm25: ndcg@10 = 0.466 (95% CI 0.447 to 0.485), hit@10 = 0.633, mrr@10 = 0.470.
+    vs dense: ndcg@10 0.348, a real difference (paired CI +0.098 to +0.137 for bm25 minus dense).
+    vs dense_hnsw: ndcg@10 0.318, a real difference (paired CI +0.128 to +0.168 for bm25 minus dense_hnsw).
+    vs hybrid: ndcg@10 0.459, not a significant difference (paired CI -0.006 to +0.020 for bm25 minus hybrid).
+    diagnosis for bm25: 36.7% missed, 11.1% found low, 52.2% found in top 3.
+[decoys] bm25 loses 0.114 ndcg@10 (19.7%) when decoy papers are added.
+[decoys] dense loses 0.079 ndcg@10 (18.5%) when decoy papers are added.
+[decoys] dense_hnsw loses 0.094 ndcg@10 (22.8%) when decoy papers are added.
+[decoys] hybrid loses 0.085 ndcg@10 (15.6%) when decoy papers are added.
+[stability] questions_only/bm25: fully deterministic over 5 runs; identical top 10 for 100.0% of questions, hit flips on 0.00%, ndcg@10 std across runs 0.00000.
+[stability] questions_only/dense: NOT deterministic over 5 runs; identical top 10 for 99.9% of questions, hit flips on 0.00%, ndcg@10 std across runs 0.00000.
+[stability] questions_only/dense_hnsw: fully deterministic over 5 runs; identical top 10 for 100.0% of questions, hit flips on 0.00%, ndcg@10 std across runs 0.00000.
+[stability] questions_only/hybrid: fully deterministic over 5 runs; identical top 10 for 100.0% of questions, hit flips on 0.00%, ndcg@10 std across runs 0.00000.
+[stability] full_with_decoys/bm25: fully deterministic over 5 runs; identical top 10 for 100.0% of questions, hit flips on 0.00%, ndcg@10 std across runs 0.00000.
+[stability] full_with_decoys/dense: NOT deterministic over 5 runs; identical top 10 for 99.8% of questions, hit flips on 0.00%, ndcg@10 std across runs 0.00000.
+[stability] full_with_decoys/dense_hnsw: fully deterministic over 5 runs; identical top 10 for 100.0% of questions, hit flips on 0.00%, ndcg@10 std across runs 0.00000.
+[stability] full_with_decoys/hybrid: NOT deterministic over 5 runs; identical top 10 for 99.9% of questions, hit flips on 0.00%, ndcg@10 std across runs 0.00000.
+[size] full_with_decoys/bm25: 1840 questions available; ±0.05 needs 278, ±0.02 needs 1736, ±0.01 needs 6942.
+[size] full_with_decoys/dense: 1840 questions available; ±0.05 needs 244, ±0.02 needs 1523, ±0.01 needs 6090.
+[size] full_with_decoys/dense_hnsw: 1840 questions available; ±0.05 needs 238, ±0.02 needs 1482, ±0.01 needs 5928.
+[size] full_with_decoys/hybrid: 1840 questions available; ±0.05 needs 257, ±0.02 needs 1605, ±0.01 needs 6417.
+[size] questions_only/bm25: 1840 questions available; ±0.05 needs 253, ±0.02 needs 1579, ±0.01 needs 6316.
+[size] questions_only/dense: 1840 questions available; ±0.05 needs 258, ±0.02 needs 1608, ±0.01 needs 6430.
+[size] questions_only/dense_hnsw: 1840 questions available; ±0.05 needs 257, ±0.02 needs 1606, ±0.01 needs 6424.
+[size] questions_only/hybrid: 1840 questions available; ±0.05 needs 248, ±0.02 needs 1547, ±0.01 needs 6187.

@@ -1,0 +1,88 @@
+{
+  "timestamp": "2026-10-14T13:26:34+0530",
+  "config": {
+    "hf_repo": "anacodicai-labs/covidqa-bench",
+    "questions_file": "gold/questions.jsonl",
+    "chunks_file": "chunks.jsonl",
+    "local_questions": null,
+    "local_chunks": null,
+    "text_field": "embed_text",
+    "settings": [
+      "questions_only",
+      "full_with_decoys"
+    ],
+    "retrievers": [
+      "bm25",
+      "dense",
+      "dense_hnsw",
+      "hybrid"
+    ],
+    "dense_model": "BAAI/bge-small-en-v1.5",
+    "query_prefix": "Represent this sentence for searching relevant passages: ",
+    "doc_prefix": "",
+    "device": null,
+    "batch_size": 64,
+    "hnsw_m": 32,
+    "hnsw_ef_search": 32,
+    "rrf_k": 60,
+    "rrf_depth": 100,
+    "ks": [
+      1,
+      3,
+      5,
+      10,
+      20
+    ],
+    "primary_k": 10,
+    "primary_metric": "ndcg",
+    "repeat_runs": 5,
+    "shuffle_each_run": true,
+    "sample_sizes": [
+      50,
+      100,
+      250,
+      500,
+      1000,
+      null
+    ],
+    "samples_per_size": 200,
+    "bootstrap_iters": 2000,
+    "margins": [
+      0.05,
+      0.02,
+      0.01
+    ],
+    "max_questions": null,
+    "seed": 42,
+    "cache_dir": "cache",
+    "results_dir": "results"
+  },
+  "data_hash": {
+    "questions": "49be5e2c653f7aaf",
+    "chunks": "01f75acc979df8b7"
+  },
+  "audit": {
+    "questions": 1852,
+    "papers_with_questions": 137,
+    "papers_in_chunks": 1637,
+    "question_papers_missing_from_chunks": 0,
+    "questions_with_empty_gold": 12,
+    "gold_ids_not_in_chunks": 0,
+    "questions_with_no_text_match_chunk": 240,
+    "duplicate_question_strings": 81,
+    "paper_slug_equals_chunk_prefix": 1.0
+  },
+  "scorable_questions": 1840,
+  "versions": {
+    "python": "3.14.8",
+    "platform": "Linux-7.2.8-200.fc44.x86_64-x86_64-with-glibc2.43",
+    "device": "cuda",
+    "numpy": "2.5.2",
+    "pandas": "2.3.3",
+    "bm25s": "0.3.13",
+    "faiss": "1.15.1",
+    "sentence_transformers": "6.1.0",
+    "torch": "2.14.1+cu130",
+    "transformers": "5.18.0"
+  }
+}
