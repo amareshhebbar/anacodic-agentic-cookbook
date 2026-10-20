@@ -1,0 +1,11 @@
+setting,retriever,per_question_sd,questions_available,n_for_±0.05,n_for_±0.02,n_for_±0.01
+full_with_decoys,bm25,0.4250758614139919,1840,278,1736,6942
+full_with_decoys,dense:bge_small,0.39813981729920306,1840,244,1523,6090
+full_with_decoys,dense:medcpt,0.34854121960465806,1840,187,1167,4667
+full_with_decoys,hybrid:bge_small,0.40868792432345885,1840,257,1605,6417
+full_with_decoys,hybrid:medcpt,0.3954712369275062,1840,241,1503,6009
+questions_only,bm25,0.40544836911635096,1840,253,1579,6316
+questions_only,dense:bge_small,0.40910042456670004,1840,258,1608,6430
+questions_only,dense:medcpt,0.3722311697093775,1840,213,1331,5323
+questions_only,hybrid:bge_small,0.4013070499496737,1840,248,1547,6187
+questions_only,hybrid:medcpt,0.3960004121682071,1840,241,1507,6025
