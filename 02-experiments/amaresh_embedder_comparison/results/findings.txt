@@ -1,0 +1,22 @@
+[questions_only | all] best overall: bm25 ndcg@10 0.581 (CI 0.562 to 0.599), hit@10 0.773; no retriever is statistically tied with it.
+    best embedder alone: bge_small ndcg@10 0.427, hit@10 0.613.
+[full_with_decoys | all] best overall: bm25 ndcg@10 0.466 (CI 0.447 to 0.485), hit@10 0.633; statistically tied: hybrid:bge_small.
+    best embedder alone: bge_small ndcg@10 0.348, hit@10 0.515.
+[questions_only | filtered] best overall: bm25 ndcg@10 0.607 (CI 0.588 to 0.625), hit@10 0.804; no retriever is statistically tied with it.
+    best embedder alone: bge_small ndcg@10 0.451, hit@10 0.645.
+[full_with_decoys | filtered] best overall: bm25 ndcg@10 0.490 (CI 0.470 to 0.510), hit@10 0.663; statistically tied: hybrid:bge_small.
+    best embedder alone: bge_small ndcg@10 0.368, hit@10 0.543.
+[medcpt vs bge_small | questions_only | all | dense] medcpt is worse: ndcg@10 0.358 vs 0.427, delta -0.069 (CI -0.085 to -0.053, -16.1%), wins 411 vs 646.
+[medcpt vs bge_small | questions_only | all | hybrid] medcpt is worse: ndcg@10 0.526 vs 0.544, delta -0.018 (CI -0.031 to -0.005, -3.3%), wins 420 vs 503.
+[medcpt vs bge_small | full_with_decoys | all | dense] medcpt is worse: ndcg@10 0.249 vs 0.348, delta -0.099 (CI -0.114 to -0.083, -28.4%), wins 271 vs 613.
+[medcpt vs bge_small | full_with_decoys | all | hybrid] medcpt is worse: ndcg@10 0.411 vs 0.459, delta -0.048 (CI -0.061 to -0.036, -10.5%), wins 330 vs 519.
+[medcpt vs bge_small | questions_only | filtered | dense] medcpt is worse: ndcg@10 0.377 vs 0.451, delta -0.074 (CI -0.092 to -0.057, -16.4%), wins 402 vs 641.
+[medcpt vs bge_small | questions_only | filtered | hybrid] medcpt is worse: ndcg@10 0.552 vs 0.571, delta -0.019 (CI -0.033 to -0.005, -3.3%), wins 407 vs 495.
+[medcpt vs bge_small | full_with_decoys | filtered | dense] medcpt is worse: ndcg@10 0.263 vs 0.368, delta -0.105 (CI -0.122 to -0.088, -28.6%), wins 267 vs 610.
+[medcpt vs bge_small | full_with_decoys | filtered | hybrid] medcpt is worse: ndcg@10 0.432 vs 0.484, delta -0.051 (CI -0.065 to -0.037, -10.6%), wins 325 vs 515.
+[hybrid | questions_only] bm25 + bge_small: 0.544, vs bm25 -0.037 (-0.051 to -0.023) does not beat bm25.
+[hybrid | questions_only] bm25 + medcpt: 0.526, vs bm25 -0.055 (-0.070 to -0.042) does not beat bm25.
+[hybrid | full_with_decoys] bm25 + bge_small: 0.459, vs bm25 -0.007 (-0.021 to +0.006) does not beat bm25.
+[hybrid | full_with_decoys] bm25 + medcpt: 0.411, vs bm25 -0.055 (-0.070 to -0.042) does not beat bm25.
+[stability] all retrievers gave the same outcomes on every repeated run.
+[size] 1840 questions scored; resolving a ±0.02 ndcg@10 difference needs about 1523 questions on full_with_decoys.
