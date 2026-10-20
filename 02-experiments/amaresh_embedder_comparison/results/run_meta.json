@@ -1,0 +1,136 @@
+{
+  "timestamp": "2026-10-20T08:29:45+0530",
+  "config": {
+    "hf_repo": "anacodicai-labs/covidqa-bench",
+    "text_field": "embed_text",
+    "mode": "standard",
+    "settings": [
+      "questions_only",
+      "full_with_decoys"
+    ],
+    "max_questions": null,
+    "repeat_runs": 3,
+    "bootstrap_iters": 2000,
+    "samples_per_size": 200,
+    "sample_sizes": [
+      50,
+      100,
+      250,
+      500,
+      1000,
+      null
+    ],
+    "margins": [
+      0.05,
+      0.02,
+      0.01
+    ],
+    "embedders": [
+      "bge_small",
+      "medcpt"
+    ],
+    "baseline": "bge_small",
+    "focus": "medcpt",
+    "device_choice": "auto",
+    "fp16": false,
+    "batch_scale": 1.0,
+    "vector_store": "faiss",
+    "rrf_k": 60,
+    "rrf_depth": 100,
+    "ks": [
+      1,
+      3,
+      5,
+      10,
+      20
+    ],
+    "primary_k": 10,
+    "report_filtered": true,
+    "seed": 42,
+    "cache_dir": "cache",
+    "results_dir": "results"
+  },
+  "embedders": {
+    "bge_small": {
+      "name": "BGE small v1.5",
+      "kind": "st",
+      "model": "BAAI/bge-small-en-v1.5",
+      "query_model": null,
+      "doc_model": null,
+      "query_prefix": "Represent this sentence for searching relevant passages: ",
+      "doc_prefix": "",
+      "normalize": true,
+      "max_len": 512
+    },
+    "medcpt": {
+      "name": "MedCPT (NCBI)",
+      "kind": "medcpt",
+      "model": null,
+      "query_model": "ncbi/MedCPT-Query-Encoder",
+      "doc_model": "ncbi/MedCPT-Article-Encoder",
+      "query_prefix": null,
+      "doc_prefix": null,
+      "normalize": false,
+      "max_len": 512
+    }
+  },
+  "embedder_stats": {
+    "bge_small": {
+      "name": "BGE small v1.5",
+      "family": "general",
+      "provider": "local",
+      "dim": 384,
+      "model_load_s": 8.987942457199097,
+      "doc_encode_s": 1120.690654039383,
+      "chunks_per_s": 57.96871756344371,
+      "encode_device": "cuda",
+      "query_ms": 1.1516494595486184,
+      "search_ms": 0.08931883435318436,
+      "index_mb": 95.16357421875
+    },
+    "medcpt": {
+      "name": "MedCPT (NCBI)",
+      "family": "medical",
+      "provider": "local",
+      "dim": 768,
+      "model_load_s": 3.191087245941162,
+      "doc_encode_s": 3396.9775462150574,
+      "chunks_per_s": 19.12435366915645,
+      "encode_device": "cuda",
+      "query_ms": 2.61809065722037,
+      "search_ms": 0.1291471331015877,
+      "index_mb": 190.3271484375
+    }
+  },
+  "failed": {},
+  "data_hash": {
+    "questions": "49be5e2c653f7aaf",
+    "chunks": "01f75acc979df8b7"
+  },
+  "scorable_questions": 1840,
+  "context_dependent_flagged": 106,
+  "versions": {
+    "device": "cuda",
+    "python": "3.14.8",
+    "platform": "Linux-7.2.8-200.fc44.x86_64-x86_64-with-glibc2.43",
+    "torch": "2.14.1+cu130",
+    "gpu": "NVIDIA GeForce GTX 1650",
+    "arch": "sm_75",
+    "torch_arch_list": [
+      "sm_75",
+      "sm_80",
+      "sm_86",
+      "sm_90",
+      "sm_100",
+      "sm_120"
+    ],
+    "vram_gb": 3.6,
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "bm25s": "0.3.14",
+    "faiss": "1.15.1",
+    "sentence_transformers": "6.1.0",
+    "transformers": "5.20.1",
+    "pinecone": null
+  }
+}
